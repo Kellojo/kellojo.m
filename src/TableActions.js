@@ -20,7 +20,9 @@ sap.ui.define([
                         type: "sap.ui.core.Control",
                         multiple: true
                     }
-                }
+                },
+
+                defaultAggregation: "left"
             },
 
             init: function() {
