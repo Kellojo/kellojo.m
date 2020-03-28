@@ -5,18 +5,19 @@ sap.ui.define([
 	"use strict";
 
 	sap.ui.getCore().initLibrary({
-		name : "com.kellojo.m",
-		noLibraryCSS: true,
+		name : "kellojo.m",
 		dependencies : [
 			"sap.ui.core"
 		],
 		types: [],
 		interfaces: [],
-		controls: [],
+		controls: [
+            "kellojo.m.TableActions"
+        ],
 		elements: [],
 		version: "1.0.0"
 	});
 
-	return com.kellojo.m;
+	return kellojo.m;
 
 }, /* bExport= */ false);
