@@ -3,7 +3,7 @@ The kellojo.m SAP UI5 library.
 It includes various smaller controls, which might be of use to you.
 
 
-## How to use and install
+## How to install
 you can add this repository as a submodule to your repo.
 then make sure you require it as a dependency like this in your UI5 bootstrap:
 ```javascript
