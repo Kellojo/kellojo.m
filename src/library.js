@@ -12,7 +12,8 @@ sap.ui.define([
 		types: [],
 		interfaces: [],
 		controls: [
-            "kellojo.m.TableActions"
+            "kellojo.m.TableActions",
+            "kellojo.m.Wrapper"
         ],
 		elements: [],
 		version: "1.0.0"
