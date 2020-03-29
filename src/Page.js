@@ -31,6 +31,11 @@ sap.ui.define([
                     mainAction: {
                         type: "sap.ui.core.Control",
                         multiple: true
+                    },
+
+                    actions: {
+                        type: "sap.ui.core.Control",
+                        multiple: true
                     }
                 },
 
@@ -138,7 +143,10 @@ sap.ui.define([
                         oRm.write("</div>");
 
                         oRm.write("<div class='kellojoM-page-header-Actions'>");
-                        
+                        var aRight = oControl.getActions();
+                        aRight.forEach(oItem => {
+                            oRm.renderControl(oItem);
+                        });
                         oRm.write("</div>");
                     oRm.write("</div>");
                 }

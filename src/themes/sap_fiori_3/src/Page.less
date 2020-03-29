@@ -27,13 +27,19 @@
 
         >div {
             flex-grow: 1;
-            max-width: 33%;
+            max-width: 33.3333333%;
         }
 
         .kellojoM-page-header-mainAction, .kellojoM-page-header-Actions {
             display: flex;
             flex-direction: row;
             align-items: center;
+
+            // Overflow toolbar fix
+            .sapMTB {
+                border: none;
+                padding: 0px;
+            }
         }
 
         .kellojoM-page-header-mainAction {

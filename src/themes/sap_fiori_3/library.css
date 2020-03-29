@@ -23,13 +23,18 @@
 }
 .kellojoM-page .kellojoM-page-header > div {
   flex-grow: 1;
-  max-width: 33%;
+  max-width: 33.3333333%;
 }
 .kellojoM-page .kellojoM-page-header .kellojoM-page-header-mainAction,
 .kellojoM-page .kellojoM-page-header .kellojoM-page-header-Actions {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+.kellojoM-page .kellojoM-page-header .kellojoM-page-header-mainAction .sapMTB,
+.kellojoM-page .kellojoM-page-header .kellojoM-page-header-Actions .sapMTB {
+  border: none;
+  padding: 0px;
 }
 .kellojoM-page .kellojoM-page-header .kellojoM-page-header-mainAction {
   justify-content: center;
