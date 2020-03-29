@@ -90,9 +90,11 @@ sap.ui.define([
 
             setTitle: function(sTitle, bSuppressInvalidate) {
                 this.m_oTitle.setText(sTitle);
+                this.m_oSubTitle.rerender();
             },
             setSubTitle: function(sSubTitle, bSuppressInvalidate) {
                 this.m_oSubTitle.setText(sSubTitle);
+                this.m_oSubTitle.rerender();
             },
 
             /**
