@@ -13,7 +13,8 @@ sap.ui.define([
 		interfaces: [],
 		controls: [
             "kellojo.m.TableActions",
-            "kellojo.m.Wrapper"
+            "kellojo.m.Wrapper",
+            "kellojo.m.LineChart",
         ],
 		elements: [],
 		version: "1.0.0"
