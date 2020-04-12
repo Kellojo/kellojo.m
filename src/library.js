@@ -15,6 +15,7 @@ sap.ui.define([
             "kellojo.m.TableActions",
             "kellojo.m.Wrapper",
             "kellojo.m.LineChart",
+            "kellojo.m.ColumnChart",
         ],
 		elements: [],
 		version: "1.0.0"

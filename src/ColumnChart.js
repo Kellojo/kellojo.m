@@ -1,5 +1,5 @@
 sap.ui.define(["sap/ui/core/Control"], function (Control) {
-    return Control.extend("kellojo.m.LineChart", {
+    return Control.extend("kellojo.m.ColumnChart", {
         metadata: {
             properties: {
                 dataPoints: { type: "object" }
@@ -13,36 +13,43 @@ sap.ui.define(["sap/ui/core/Control"], function (Control) {
                 this.m_oChart.destroy();
                 this.m_oChart = null;
             }
-            
+
             var oData = this.getDataPoints();
             if (!oData || !this.getDomRef() || !this.getVisible()) {
                 return;
             }
-            
-            var  options = {
-                    chart: {
-                        type: "line",
-                        toolbar: {
-                            show: false
-                        },
-                        height: "150px",
-                        zoom: {
-                            enabled: false
-                        }
-                    },
-                    legend: {
-                        show: false
-                    },
-                    grid: {
-                        show: false
-                    },
-                    xaxis: {
-                        type: 'datetime',
-                    },
 
-                    series: oData.series,
-                    annotations: oData.annotations
-                };
+            var options = {
+                chart: {
+                    type: "bar",
+                    toolbar: {
+                        show: false
+                    },
+                    height: "150px",
+                    zoom: {
+                        enabled: false
+                    }
+                },
+                plotOptions: {
+                    bar: {
+                        columnWidth: '45%',
+                        distributed: true
+                    }
+                },
+
+                legend: {
+                    show: false
+                },
+                grid: {
+                    show: false
+                },
+                dataLabels: {
+                    enabled: false
+                },
+
+                series: oData.series,
+                xaxis: oData.xaxis
+            };
 
             this.m_oChart = new ApexCharts(this.getDomRef(), options);
 
@@ -56,7 +63,7 @@ sap.ui.define(["sap/ui/core/Control"], function (Control) {
         renderer: function (oRm, oControl) {
             oRm.write("<div");
             oRm.writeControlData(oControl);
-            oRm.addClass("kellojoM-LineChart");
+            oRm.addClass("kellojoM-ColunChart");
             oRm.writeClasses(oControl);
             oRm.write(">");
 
@@ -69,7 +76,13 @@ sap.ui.define(["sap/ui/core/Control"], function (Control) {
 
         setDataPoints: function (oData) {
             this.setProperty("dataPoints", oData, true);
-            this.renderChart();
+
+            if (this.m_oChart != null) {
+                this.m_oChart.updateSeries(oData.series, true);
+                this.m_oChart.updateOptions({xaxis: oData.xaxis});
+            } else {
+                this.renderChart();
+            }
         }
     });
 });
