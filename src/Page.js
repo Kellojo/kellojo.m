@@ -55,6 +55,12 @@ sap.ui.define([
                 this.m_oSubTitle = new Label({
                     text: this.getSubTitle()
                 }).addStyleClass("kellojoM-page-header-subtitletitle-text");
+
+                window.addEventListener("resize", this.getHeaderHeight.bind(this));
+            },
+
+            exit: function() {
+                window.removeEventListener("resize", this.getHeaderHeight.bind(this));
             },
 
             onBeforeRendering: function () {
