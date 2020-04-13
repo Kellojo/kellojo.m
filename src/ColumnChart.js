@@ -78,8 +78,8 @@ sap.ui.define(["sap/ui/core/Control"], function (Control) {
             this.setProperty("dataPoints", oData, true);
 
             if (this.m_oChart != null) {
-                this.m_oChart.updateSeries(oData.series, true);
                 this.m_oChart.updateOptions({xaxis: oData.xaxis});
+                this.m_oChart.updateSeries(oData.series, true);
             } else {
                 this.renderChart();
             }
