@@ -4,6 +4,16 @@ sap.ui.define(["sap/ui/core/Control"], function (Control) {
             properties: {
                 dataPoints: { type: "object" }
             },
+
+            events: {
+                columnPress: {
+                    parameters: {
+                        category: {
+                            type: "string"
+                        }
+                    }
+                }
+            }
         },
 
         init: function () { },
@@ -28,6 +38,14 @@ sap.ui.define(["sap/ui/core/Control"], function (Control) {
                     height: "150px",
                     zoom: {
                         enabled: false
+                    },
+                    events: {
+                        dataPointSelection: function(oEvent, oDomRef, oApexChartEvent) {
+                            var aCategories = this.getDataPoints().xaxis.categories;
+                            this.fireColumnPress({
+                                category: aCategories[oApexChartEvent.dataPointIndex]
+                            });
+                        }.bind(this)
                     }
                 },
                 plotOptions: {
