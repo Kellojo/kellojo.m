@@ -1,6 +1,6 @@
 sap.ui.define([
     "sap/ui/core/XMLComposite",
-    "sap/ui/Core/core"
+    "sap/ui/core/Core"
 ], function (XMLComposite, Core) {
         var Login =  XMLComposite.extend("kellojo.m.Login", {
             metadata: {
