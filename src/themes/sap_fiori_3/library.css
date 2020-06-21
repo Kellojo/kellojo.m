@@ -203,7 +203,6 @@
 .sap-phone .kellojoM-page .kellojoM-page-header {
   flex-direction: column;
   padding: 0px;
-  background-color: #395E66;
 }
 .sap-phone .kellojoM-page .kellojoM-page-header > div {
   max-width: 100%;
@@ -212,14 +211,28 @@
 .sap-phone .kellojoM-page .kellojoM-page-header .sapMLabel {
   color: #ffffff;
 }
+.sap-phone .kellojoM-page .kellojoM-page-header .kellojoM-page-header-mainAction {
+  width: 100%;
+  padding: 0.25rem;
+  box-sizing: border-box;
+}
 .sap-phone .kellojoM-page .kellojoM-page-header .kellojoM-page-header-mainAction .sapMSF {
+  width: 100% !important;
   max-width: 100%;
 }
+.sap-phone .kellojoM-page .kellojoM-page-header .kellojoM-page-header-mainAction .sapMSF .sapMSFF {
+  border-radius: 5px;
+  transition: border-color 0.3s ease-out;
+}
+.sap-phone .kellojoM-page .kellojoM-page-header .kellojoM-page-header-title,
 .sap-phone .kellojoM-page .kellojoM-page-header .kellojoM-page-header-Actions {
   display: none;
 }
 .sap-phone .kellojoM-page .kellojoM-page-content {
   padding: 0px;
+}
+.sap-phone .kellojoM-page .kellojoM-page-content thead {
+  display: none;
 }
 .kellojoM-tableActions {
   display: flex;

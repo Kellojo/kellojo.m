@@ -80,7 +80,7 @@
         .kellojoM-page-header {
             flex-direction: column;
             padding: 0px;
-            background-color: #395E66;
+           // background-color: #395E66;
 
             >div {
                 max-width: 100%;
@@ -91,18 +91,32 @@
             }
 
             .kellojoM-page-header-mainAction {
+                width: 100%;
+                padding: @tinyPadding;
+                box-sizing: border-box;
+
                 .sapMSF {
+                    width: 100% !important;
                     max-width: 100%;
+
+                    .sapMSFF {
+                        border-radius: @roundBorderRadius;
+                            transition: border-color 0.3s ease-out;
+                    }
                 }
             }
 
-            .kellojoM-page-header-Actions {
+            .kellojoM-page-header-title, .kellojoM-page-header-Actions {
                 display: none;
             }
         }
 
         .kellojoM-page-content {
             padding: 0px;
+
+            thead {
+                display: none;
+            }
         }
     }
 }
