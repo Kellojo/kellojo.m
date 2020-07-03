@@ -1,41 +1,11 @@
 sap.ui.define([
     "sap/ui/core/XMLComposite",
+    "sap/ui/core/ValueState",
     "sap/ui/core/Core"
-], function (XMLComposite, Core) {
+], function (XMLComposite, ValueState, Core) {
     var TransactionEditor = XMLComposite.extend("kellojo.m.TransactionEditor", {
         metadata: {
             properties: {
-                TransactionEditor_title: {
-                    type: "string"
-                },
-                TransactionEditor_emailPlaceholder: {
-                    type: "string"
-                },
-                TransactionEditor_passwordPlaceholder: {
-                    type: "string"
-                },
-                TransactionEditor_passwordRepeatPlaceholder: {
-                    type: "string"
-                },
-                TransactionEditor_forgotPassword: {
-                    type: "string"
-                },
-                TransactionEditor_createAccountQuestion: {
-                    type: "string"
-                },
-                TransactionEditor_signIn: {
-                    type: "string"
-                },
-
-                registration_title: {
-                    type: "string"
-                },
-                registration_TransactionEditorQuestion: {
-                    type: "string"
-                },
-                registration_signUp: {
-                    type: "string"
-                },
 
                 title: {
                     type: "string",
@@ -44,6 +14,10 @@ sap.ui.define([
                 category: {
                     type: "string",
                     defaultValue: ""
+                },
+                type: {
+                    type: "string",
+                    defaultValue: "expense"
                 },
                 categories: {
                     type: "string[]",
@@ -54,11 +28,11 @@ sap.ui.define([
                     defaultValue: true
                 },
                 occurredOn: {
-                    type: "date",
+                    type: "object",
                     defaultValue: new Date()
                 },
                 amount: {
-                    type: "number",
+                    type: "Number",
                     defaultValue: 0
                 },
 
@@ -70,16 +44,7 @@ sap.ui.define([
             },
 
             events: {
-                signIn: {
-
-                },
-                signUp: {
-
-                },
-                passwordForgotten: {
-
-                },
-
+                
             }
         },
 
@@ -90,10 +55,14 @@ sap.ui.define([
 
 
     TransactionEditorProto.init = function () {
+        XMLComposite.prototype.init.apply(this, arguments);
         this.addStyleClass("kellojoMTransactionEditor");
-        this.m_oNavContainer = this.byId("idNavContainer");
-        this.m_oSignUpForm = this.byId("idSignUpForm");
-        this.m_oSignInForm = this.byId("idSignInForm");
+
+        // validation setup
+        this.m_aFormFields = [
+            {control: this.byId("idTitleInput"), minLength: 3 },
+            {control: this.byId("idAmountInput"), minValue: 0 }
+        ]
     };
 
     // ----------------------------
@@ -101,7 +70,63 @@ sap.ui.define([
     // ----------------------------
 
 
+    // ----------------------------
+    // Validation
+    // ----------------------------
 
+        /**
+     * Validates the form controls, only works, if a property called "this.m_aFormFields" has been created
+     * @returns {boolean}
+     * @protected
+     */
+    TransactionEditorProto.validateControls = function() {
+        var aFields = this.m_aFormFields,
+            bIsValid = true; 
+
+        aFields.forEach((oControlInfo) => {
+            var oControl = oControlInfo.control,
+                oResourceBundle = Core.getLibraryResourceBundle("kellojo.m"),
+                sValue = oControl.getValue(),
+                bIsControlValid = true,
+                sValueStateText = "";
+            
+            // min length
+            if (oControlInfo.hasOwnProperty("minLength") && sValue.length < oControlInfo.minLength) {
+                bIsControlValid = false;
+                sValueStateText = oResourceBundle.getText("formValidationMinLengthNotReached", [oControlInfo.minLength]);
+            }
+
+            // min value
+            if (oControlInfo.hasOwnProperty("minValue") && parseFloat(oControl.getNumericValue()) <= oControlInfo.minValue) {
+                bIsControlValid = false;
+                sValueStateText = oResourceBundle.getText("formValidationMinValueNotReached", [oControlInfo.minValue]);
+            }
+
+
+
+            oControl.setValueState(bIsControlValid ? ValueState.None : ValueState.Error);
+            oControl.setValueStateText(sValueStateText);
+
+            if (!bIsControlValid) {
+                bIsValid = false;
+            }
+        });
+
+        return bIsValid;
+    };
+
+    /**
+     * Resets the validation for all controls
+     * @protected
+     */
+    TransactionEditorProto.resetValidation = function() {
+        var aFields = this.m_aFormFields;
+        aFields.forEach((oControlInfo) => {
+            var oControl = oControlInfo.control;
+            oControl.setValueState(ValueState.None);
+            oControl.setValueStateText("");
+        });
+    };
 
     return TransactionEditor;
 });

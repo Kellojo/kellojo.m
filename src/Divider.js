@@ -21,7 +21,7 @@ sap.ui.define([
                 oRm.writeControlData(oControl);
                 oRm.addClass("kellojoM-divider");
                 oRm.writeClasses(oControl);
-                oRm.write(" />");
+                oRm.write("></div>");
             }
         });
     }
