@@ -18,6 +18,7 @@ sap.ui.define([
             "kellojo.m.ColumnChart",
             "kellojo.m.CurrencyInput",
             "kellojo.m.Currency",
+            "kellojo.m.Deleter",
         ],
 		elements: [],
 		version: "1.0.0"
