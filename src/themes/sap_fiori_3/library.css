@@ -144,6 +144,12 @@
 .kellojoM-lineSpacing {
   margin-bottom: 0.25rem;
 }
+.kellojoM-spacingLeft {
+  padding-left: 0.25rem;
+}
+.kellojoM-spacingRight {
+  padding-right: 0.25rem;
+}
 .kellojoM-page {
   width: 100%;
   height: 100%;
@@ -308,4 +314,13 @@
   width: 0px;
   transition: width 0.2s ease-out;
   background: #ffffff;
+}
+.kellojoMCurrency {
+  color: #14b341;
+}
+.kellojoMCurrency .sapUiUfdCurrencyCurrency {
+  width: unset;
+}
+.kellojoMCurrency-flg-negative {
+  color: #bb0000;
 }
