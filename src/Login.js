@@ -109,18 +109,12 @@ sap.ui.define([
                     password: this.getPassword()
                 });
             } else {
-                this.m_oSignInForm.removeStyleClass("kellojoMLogin-loginForm-flg-error");
-                setTimeout(function() {
-                    this.m_oSignInForm.addStyleClass("kellojoMLogin-loginForm-flg-error");
-                }.bind(this), 0);
+                this.shakeSignIn();
             }
         };
         LoginProto.onSignUpPress = function() {
             if (!this.validateInput().isValidSignUp) {
-                this.m_oSignUpForm.removeStyleClass("kellojoMLogin-loginForm-flg-error");
-                setTimeout(function() {
-                    this.m_oSignUpForm.addStyleClass("kellojoMLogin-loginForm-flg-error");
-                }.bind(this), 0);
+                this.shakeSignUp();
             } else {
                 this.fireSignUp({
                     email: this.getEmail(),
@@ -128,6 +122,28 @@ sap.ui.define([
                 });
             }
         };
+
+        /**
+         * Shakes the signIn form to indicate an error
+         * @public
+         */
+        LoginProto.shakeSignIn = function() {
+            this.m_oSignInForm.removeStyleClass("kellojoMLogin-loginForm-flg-error");
+            setTimeout(function() {
+                this.m_oSignInForm.addStyleClass("kellojoMLogin-loginForm-flg-error");
+            }.bind(this), 0);
+        }
+
+        /**
+         * Shakes the signUp form to indicate an error
+         * @public
+         */
+        LoginProto.shakeSignUp = function() {
+            this.m_oSignUpForm.removeStyleClass("kellojoMLogin-loginForm-flg-error");
+            setTimeout(function() {
+                this.m_oSignUpForm.addStyleClass("kellojoMLogin-loginForm-flg-error");
+            }.bind(this), 0);
+        }
 
         /**
          * Validates the input of the email & password fields
@@ -175,6 +191,14 @@ sap.ui.define([
         // ----------------------------
         // Getters & Setters
         // ----------------------------
+
+        LoginProto.setCustomErrorMessage = function(sValue) {
+            this.setProperty("customErrorMessage", sValue);
+            if (sValue != "" && sValue != null) {
+                this.shakeSignIn();
+                this.shakeSignUp();
+            }
+        }
 
         LoginProto.getLogin_title = function() {
             return this.getProperty("login_title") || Core.getLibraryResourceBundle("kellojo.m").getText("login_title");
