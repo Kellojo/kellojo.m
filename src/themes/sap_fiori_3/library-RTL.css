@@ -343,3 +343,36 @@
 .kellojoMDeleter.sapMLIBActive .sapMSLITitleOnly {
   color: #ffffff;
 }
+.kellojoMUserHelpMenu-list {
+  padding: 1rem 0;
+  background-color: #f7f7f7;
+}
+.kellojoMUserHelpMenu-list .sapMLIB {
+  padding-left: 1.5rem !important;
+}
+.kellojoMUserHelpMenu-itemSpacer {
+  margin-bottom: 1rem;
+}
+.sap-phone .kellojoMUserHelpMenu-popover {
+  padding-top: 3.5rem !important;
+}
+.sap-phone .kellojoMUserHelpMenu-popover .sapMDialogTitle .sapMIBar {
+  height: 3.5rem !important;
+  background: linear-gradient(to right, #005575, #514a9d) !important;
+}
+.sap-phone .kellojoMUserHelpMenu-popover .sapMDialogTitle .sapMIBar .sapMTitle,
+.sap-phone .kellojoMUserHelpMenu-popover .sapMDialogTitle .sapMIBar .sapMBarContainer,
+.sap-phone .kellojoMUserHelpMenu-popover .sapMDialogTitle .sapMIBar .sapMBtnContent {
+  color: #ffffff;
+}
+.sap-phone .kellojoMUserHelpMenu-popover .sapMDialogTitle .sapMIBar .sapMDialogTitle,
+.sap-phone .kellojoMUserHelpMenu-popover .sapMDialogTitle .sapMIBar .sapMBarContainer {
+  line-height: 3rem;
+  height: 3rem;
+}
+.sap-phone .kellojoMUserHelpMenu-popover .sapMDialogScroll {
+  height: 100%;
+}
+.sap-phone .kellojoMUserHelpMenu-popover .kellojoMUserHelpMenu-list {
+  height: 100%;
+}
