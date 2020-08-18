@@ -324,6 +324,10 @@
 .kellojoMCurrency .sapUiUfdCurrencyCurrency {
   width: unset;
 }
+.kellojoMCurrency .sapUiUfdCurrencyValue,
+.kellojoMCurrency .sapUiUfdCurrencyCurrency {
+  vertical-align: bottom;
+}
 .kellojoMCurrency-flg-negative {
   color: #bb0000;
 }
