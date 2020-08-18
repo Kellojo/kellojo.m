@@ -9,6 +9,7 @@
     "tinyPadding": "0.25rem",
     "lineSpacing": "0.25rem",
     "roundBorderRadius": "5px",
+    "defaultMobileListItemHeight": "2.5rem",
     "white": "#ffffff",
     "activeFontColor": "#ffffff",
     "borderGrey": "#e5e5e5",

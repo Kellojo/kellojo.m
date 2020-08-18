@@ -381,3 +381,6 @@
 .sap-phone .kellojoMUserHelpMenu-popover .kellojoMUserHelpMenu-list {
   height: 100%;
 }
+.sap-phone .kellojoMUserHelpMenu-popover .kellojoMUserHelpMenu-list .sapMLIB {
+  height: 2.5rem;
+}
