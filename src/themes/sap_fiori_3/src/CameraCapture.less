@@ -1,0 +1,24 @@
+.kellojoM-cameraCapture-border {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;   
+    margin: @defaultPadding;
+    padding: @defaultPadding;
+    border: 2px dashed @borderGrey;
+    border-radius: @roundBorderRadius;
+
+
+    :not(:last-child) {
+        margin-bottom: @halfPadding;
+    }
+
+    .kellojoM-cameraCapture-icon {
+        font-size: 4rem;
+        background-image: linear-gradient(to left, #005575, #514a9d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+        margin-bottom: 1rem;
+    }
+}
