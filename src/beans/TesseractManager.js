@@ -20,11 +20,13 @@ sap.ui.define([
     SchemaProto.recognizeText = async function(sImageBase64, onProgress, sLanguage) {
         sLanguage = sLanguage || "eng";
         
-        return await Tesseract.recognize(sImageBase64, sLanguage, {
+        var oResult = await Tesseract.recognize(sImageBase64, sLanguage, {
             logger: (oProgress) => {
                 onProgress(oProgress.status, oProgress.progress);
             }
         });
+
+        return oResult.data.text;
     };
 
 
