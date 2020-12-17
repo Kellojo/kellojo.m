@@ -352,7 +352,7 @@
   color: #ffffff;
 }
 .kellojoMUserHelpMenu-list {
-  padding: 1rem 0;
+  padding: 2rem 0 !important;
   background-color: #f7f7f7;
 }
 .kellojoMUserHelpMenu-list .sapMLIB {
