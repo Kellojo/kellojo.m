@@ -69,7 +69,7 @@
   transition: padding 0.3s ease-out;
   padding-bottom: 1rem;
   text-align: center !important;
-  white-space: normal;
+  white-space: normal !important;
 }
 .kellojoMLogin-errorMessage.kellojoMAnimatedLabel-flg-collapsed {
   padding-bottom: 0px;
