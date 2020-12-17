@@ -421,3 +421,25 @@
   border-radius: 5px;
   transition: width 0.5s ease-out;
 }
+.kellojoMNoData {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+.kellojoMNoData .sapMText {
+  text-align: center !important;
+}
+.kellojoMNoData-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+}
+.kellojoMNoData-icon {
+  margin-bottom: 2rem;
+  font-size: 3rem;
+  background-image: linear-gradient(to right, #005575, #514a9d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

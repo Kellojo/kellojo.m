@@ -20,6 +20,7 @@ sap.ui.define([
             "kellojo.m.Currency",
             "kellojo.m.Deleter",
             "kellojo.m.CameraCapture",
+            "kellojo.m.NoData",
         ],
 		elements: [],
 		version: "1.0.0"
