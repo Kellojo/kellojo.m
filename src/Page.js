@@ -19,6 +19,10 @@ sap.ui.define([
                     showHeader: {
                         type: "boolean",
                         defaultValue: true
+                    },
+                    condensed: {
+                        type: "boolean",
+                        defaultValue: false
                     }
                 },
 
@@ -55,6 +59,8 @@ sap.ui.define([
                 this.m_oSubTitle = new Label({
                     text: this.getSubTitle()
                 }).addStyleClass("kellojoM-page-header-subtitletitle-text");
+
+                this.setCondensed(this.getCondensed());
 
                 window.addEventListener("resize", this.getHeaderHeight.bind(this));
             },
@@ -101,6 +107,12 @@ sap.ui.define([
             setSubTitle: function(sSubTitle, bSuppressInvalidate) {
                 this.m_oSubTitle.setText(sSubTitle);
                 this.m_oSubTitle.rerender();
+            },
+
+            setCondensed: function(bValue, bSuppressInvalidate) {
+                this.setProperty("condensed", bValue);
+                this.toggleStyleClass("kellojoM-page-flg-condensed", bValue);
+                return this;
             },
 
             /**
