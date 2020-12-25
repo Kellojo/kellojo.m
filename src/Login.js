@@ -37,6 +37,16 @@ sap.ui.define([
                         type: "string"
                     },
 
+                    passwordForgotten_backQuestion: {
+                        type: "string"
+                    },
+                    passwordForgotten_sendEmail: {
+                        type: "string"
+                    },
+                    passwordForgotten_title: {
+                        type: "string"
+                    },
+
                     email: {
                         type: "string",
                         defaultValue: ""
@@ -75,7 +85,11 @@ sap.ui.define([
 
                     },
                     passwordForgotten: {
-
+                        parameters: {
+                            email: {
+                                type: "string"
+                            }
+                        }
                     },
 
                 }
@@ -92,13 +106,16 @@ sap.ui.define([
             this.m_oNavContainer = this.byId("idNavContainer");
             this.m_oSignUpForm = this.byId("idSignUpForm");
             this.m_oSignInForm = this.byId("idSignInForm");
+            this.m_oPasswordForgottenForm = this.byId("idResetPasswordForm");
         };
 
 
         LoginProto.toSignIn = function() {
+            this.setCustomErrorMessage("");
             this.m_oNavContainer.backToTop();
         };
         LoginProto.toSignUp = function() {
+            this.setCustomErrorMessage("");
             this.m_oNavContainer.to(this.byId("idSignUpPage"));
         };
 
@@ -123,15 +140,23 @@ sap.ui.define([
             }
         };
 
+        LoginProto.onSendPasswordForgottenEmailPress = function() {
+            this.setCustomErrorMessage("");
+            if (!this.validateInput().isValidPasswordForgotten) {
+                this.shakeForgottenPassword();
+            } else {
+                this.firePasswordForgotten({
+                    email: this.getEmail()
+                });
+            }
+        }
+
         /**
          * Shakes the signIn form to indicate an error
          * @public
          */
         LoginProto.shakeSignIn = function() {
-            this.m_oSignInForm.removeStyleClass("kellojoMLogin-loginForm-flg-error");
-            setTimeout(function() {
-                this.m_oSignInForm.addStyleClass("kellojoMLogin-loginForm-flg-error");
-            }.bind(this), 0);
+            this._shakeForm(this.m_oSignInForm);
         }
 
         /**
@@ -139,10 +164,30 @@ sap.ui.define([
          * @public
          */
         LoginProto.shakeSignUp = function() {
-            this.m_oSignUpForm.removeStyleClass("kellojoMLogin-loginForm-flg-error");
+            this._shakeForm(this.m_oSignUpForm);
+        }
+
+        /**
+         * Shakes the password forgotten form to indicate an error
+         * @public
+         */
+        LoginProto.shakeForgottenPassword = function() {
+            this._shakeForm(this.m_oPasswordForgottenForm);
+        }
+
+        /**
+         * Shakes the given form control
+         * @param {sap.ui.Core.Control} oForm 
+         * @private
+         */
+        LoginProto._shakeForm = function(oForm) {
+            oForm.removeStyleClass("kellojoMLogin-loginForm-flg-error");
             setTimeout(function() {
-                this.m_oSignUpForm.addStyleClass("kellojoMLogin-loginForm-flg-error");
+                oForm.addStyleClass("kellojoMLogin-loginForm-flg-error");
             }.bind(this), 0);
+            setTimeout(function() {
+                oForm.removeStyleClass("kellojoMLogin-loginForm-flg-error");
+            }.bind(this), 500);
         }
 
         /**
@@ -163,12 +208,14 @@ sap.ui.define([
 
             return {
                 isValidSignIn: bIsValidPassword && bIsValidEmail,
-                isValidSignUp: bIsValidPassword && bIsValidPassword1 && bIsValidEmail
+                isValidSignUp: bIsValidPassword && bIsValidPassword1 && bIsValidEmail,
+                isValidPasswordForgotten: bIsValidEmail
             }; 
         };
 
         LoginProto.onForgotPasswordPress = function() {
-            this.firePasswordForgotten({});
+            this.setCustomErrorMessage("");
+            this.m_oNavContainer.to(this.byId("idPasswordForgottenPage"));
         };
 
         /**
@@ -238,6 +285,18 @@ sap.ui.define([
 
         LoginProto.getRegistration_signUp = function() {
             return this.getProperty("registration_signUp") || Core.getLibraryResourceBundle("kellojo.m").getText("registration_signUp");
+        }
+
+        LoginProto.getPasswordForgotten_backQuestion = function() {
+            return this.getProperty("passwordForgotten_backQuestion") || Core.getLibraryResourceBundle("kellojo.m").getText("passwordForgotten_backQuestion");
+        }
+
+        LoginProto.getPasswordForgotten_sendEmail = function() {
+            return this.getProperty("passwordForgotten_sendEmail") || Core.getLibraryResourceBundle("kellojo.m").getText("passwordForgotten_sendEmail");
+        }
+
+        LoginProto.getPasswordForgotten_title = function() {
+            return this.getProperty("passwordForgotten_title") || Core.getLibraryResourceBundle("kellojo.m").getText("passwordForgotten_title");
         }
 
 
