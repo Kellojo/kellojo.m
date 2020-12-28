@@ -1,0 +1,7 @@
+specVersion: '2.2'
+metadata:
+  name: kellojo.m
+type: library
+framework:
+  name: OpenUI5
+  version: "1.85.2"

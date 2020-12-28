@@ -22,7 +22,9 @@ sap.ui.define([
             "kellojo.m.CameraCapture",
             "kellojo.m.NoData",
             "kellojo.m.SortTable",
-            "kellojo.m.SortColumn"
+            "kellojo.m.SortColumn",
+            "kellojo.m.UserHelpMenu",
+            "kellojo.m.beans.BeanBase",
         ],
 		elements: [],
 		version: "1.0.0"
