@@ -24,7 +24,7 @@ sap.ui.define([
             "kellojo.m.SortTable",
             "kellojo.m.SortColumn",
             "kellojo.m.UserHelpMenu",
-            "kellojo.m.beans.BeanBase"
+            "kellojo.m.beans.BeanBase",
         ],
 		elements: [],
 		version: "1.0.0"
