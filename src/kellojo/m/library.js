@@ -28,7 +28,14 @@ sap.ui.define([
         ],
 		elements: [],
 		version: "1.0.0"
-	});
+    });
+    
+    kellojo.m.TransactionreccurrenceType = {
+        DAILY: "DAILY",
+        WEEKLY: "WEEKLY",
+        MONTHLY: "MONTHLY",
+        YEARLY: "YEARLY",
+    }
 
 	return kellojo.m;
 

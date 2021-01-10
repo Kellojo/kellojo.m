@@ -72,6 +72,33 @@
             box-shadow: @defaultBoxShadow;
         }
     }
+    
+}
+
+.kellojoM-page-header-title {
+    .sapMMenuBtn {
+        max-width: 16.5rem !important;
+
+        .sapMBtn {
+            width: auto !important;
+        }
+
+        .sapMBtnInner {
+            padding-left: 0px !important;
+            background-color: transparent !important;
+            border: none !important
+        }
+
+        .sapMBtnContent, .sapMBtnInner::after {
+            font-size: @titleFontSize;
+            color: #0854a0 !important;
+        }
+
+        .sapMBtnInner::after {
+            right: -@halfPadding;
+        }
+        
+    }
 }
 
 .kellojoM-page-flg-condensed {

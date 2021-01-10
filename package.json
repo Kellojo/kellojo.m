@@ -8,7 +8,8 @@
     "@ui5/cli": "^2.7.1"
   },
   "scripts": {
-    "test":"echo \"Error: no test specified\" && exit 1"
+    "test":"echo \"Error: no test specified\" && exit 1",
+    "build": "ui5 build --exclude-task=* --include-task=buildThemes && node copyThemes.js"
   },
   "author": "Kellojo",
   "license": "MIT"

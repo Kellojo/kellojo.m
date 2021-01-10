@@ -8,10 +8,6 @@ sap.ui.define([
         return Control.extend("kellojo.m.Page", {
             metadata: {
                 properties: {
-                    title: {
-                        type: "string",
-                        defaultValue: ""
-                    },
                     subTitle: {
                         type: "string",
                         defaultValue: ""
@@ -40,6 +36,11 @@ sap.ui.define([
                     actions: {
                         type: "sap.ui.core.Control",
                         multiple: true
+                    },
+
+                    title: {
+                        type: "sap.ui.core.Control",
+                        multiple: false
                     }
                 },
 
@@ -52,9 +53,6 @@ sap.ui.define([
 
             init: function() {
                 this.attachBrowserEvent("scroll", this.onScroll.bind(this));
-                this.m_oTitle = new Text({
-                    text: this.getTitle()
-                }).addStyleClass("kellojoM-page-header-title-text");
 
                 this.m_oSubTitle = new Label({
                     text: this.getSubTitle()
@@ -100,10 +98,6 @@ sap.ui.define([
             // Getters & Setters
             // ---------------------------
 
-            setTitle: function(sTitle, bSuppressInvalidate) {
-                this.m_oTitle.setText(sTitle);
-                this.m_oSubTitle.rerender();
-            },
             setSubTitle: function(sSubTitle, bSuppressInvalidate) {
                 this.m_oSubTitle.setText(sSubTitle);
                 this.m_oSubTitle.rerender();
@@ -151,7 +145,7 @@ sap.ui.define([
                 if (oControl.getShowHeader()) {
                     oRm.write("<div class='kellojoM-page-header'>");
                         oRm.write("<div class='kellojoM-page-header-title'>");
-                            oRm.renderControl(oControl.m_oTitle);
+                            oRm.renderControl(oControl.getTitle());
                             oRm.renderControl(oControl.m_oSubTitle);
                         oRm.write("</div>");
 
