@@ -27,8 +27,9 @@
         <NavContainer height="100%" id="idNavContainer">
 
             <List class="kellojoMUserHelpMenu-list" id="idList">
-                <StandardListItem title="{$this>/dataExportLabel}" icon="sap-icon://upload" press="fireExportPress" type="Active" visible="{$this>/exportVisible}"/>
-                <StandardListItem title="{$this>/getMobileAppLabel}" icon="sap-icon://iphone" press="fireGetMobileAppPress" type="Active" visible="{= !${$this>/isPhone}}"  class="kellojoMUserHelpMenu-itemSpacer"/>
+                <StandardListItem title="{$this>/dataExportLabel}" icon="sap-icon://upload" press="fireExportPress" type="Active" visible="{$this>/exportVisible}" class="kellojoMUserHelpMenu-itemSpacer"/>
+                
+                <StandardListItem title="{$this>/getMobileAppLabel}" icon="sap-icon://iphone" press="fireGetMobileAppPress" type="Active" visible="{= !${$this>/isPhone}}"/>
                 <StandardListItem title="{$this>/getDesktopAppLabel}" icon="sap-icon://sys-monitor" press="fireGetDesktopAppPress" type="Active" visible="{$this>/isPhone}"/>
                 <StandardListItem title="{$this>/websiteLabel}" icon="sap-icon://internet-browser" press="fireWebsitePress" type="Active" class="kellojoMUserHelpMenu-itemSpacer"/>
 
