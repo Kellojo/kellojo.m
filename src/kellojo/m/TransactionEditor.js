@@ -36,6 +36,15 @@ sap.ui.define([
                     defaultValue: 0
                 },
 
+                _amount: {
+                    type: "any",
+                    defaultValue: ["0", "€"]
+                },
+                currencySymbol: {
+                    type: "string",
+                    defaultValue: "€"
+                },
+
                 customErrorMessage: {
                     type: "string"
                 }
@@ -65,9 +74,20 @@ sap.ui.define([
         ]
     };
 
+    TransactionEditorProto.onAmountChange = function() {
+        this.setAmount(this.get_amount()[0]);
+    }
+
     // ----------------------------
     // Getters & Setters
     // ----------------------------
+
+    TransactionEditorProto.setAmount = function(iAmount) {
+        this.setProperty("amount", iAmount);
+        this.set_amount([
+            iAmount, this.getCurrencySymbol()
+        ]);
+    }
 
 
     // ----------------------------
@@ -97,7 +117,11 @@ sap.ui.define([
             }
 
             // min value
-            if (oControlInfo.hasOwnProperty("minValue") && parseFloat(oControl.getNumericValue()) <= oControlInfo.minValue) {
+            var iNumericValue = oControl.getBinding("value").getValue();
+            if (Array.isArray(iNumericValue)) {
+                iNumericValue = iNumericValue[0];
+            }
+            if (oControlInfo.hasOwnProperty("minValue") && parseFloat(iNumericValue) <= oControlInfo.minValue) {
                 bIsControlValid = false;
                 sValueStateText = oResourceBundle.getText("formValidationMinValueNotReached", [oControlInfo.minValue]);
             }

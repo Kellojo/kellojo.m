@@ -16,7 +16,6 @@ sap.ui.define([
             "kellojo.m.Wrapper",
             "kellojo.m.LineChart",
             "kellojo.m.ColumnChart",
-            "kellojo.m.CurrencyInput",
             "kellojo.m.Currency",
             "kellojo.m.Deleter",
             "kellojo.m.CameraCapture",
