@@ -1,8 +1,9 @@
 sap.ui.define([
     "sap/ui/core/XMLComposite",
     "sap/ui/core/ValueState",
-    "sap/ui/core/Core"
-], function (XMLComposite, ValueState, Core) {
+    "sap/ui/core/Core",
+    "sap/ui/core/format/NumberFormat",
+], function (XMLComposite, ValueState, Core, NumberFormat) {
     var TransactionEditor = XMLComposite.extend("kellojo.m.TransactionEditor", {
         metadata: {
             properties: {
@@ -40,9 +41,9 @@ sap.ui.define([
                     type: "any",
                     defaultValue: ["0", "€"]
                 },
-                currencySymbol: {
+                currency: {
                     type: "string",
-                    defaultValue: "€"
+                    defaultValue: "EUR"
                 },
 
                 customErrorMessage: {
@@ -67,6 +68,10 @@ sap.ui.define([
         XMLComposite.prototype.init.apply(this, arguments);
         this.addStyleClass("kellojoMTransactionEditor");
 
+        this.m_oNumberFormat = NumberFormat.getCurrencyInstance({
+            showMeasure: false
+        });
+
         // validation setup
         this.m_aFormFields = [
             {control: this.byId("idTitleInput"), minLength: 3 },
@@ -85,8 +90,17 @@ sap.ui.define([
     TransactionEditorProto.setAmount = function(iAmount) {
         this.setProperty("amount", iAmount);
         this.set_amount([
-            iAmount, this.getCurrencySymbol()
+            iAmount,
+            this.m_oNumberFormat.oLocaleData.getCurrencySymbol(this.getCurrency())
         ]);
+    }
+
+    TransactionEditorProto.setCurrency = function(sCurrency) {
+        this.setProperty("currency", sCurrency);
+
+        var aAmount = this.get_amount();
+        aAmount[1] = this.m_oNumberFormat.oLocaleData.getCurrencySymbol(this.getCurrency());
+        this.set_amount(aAmount);
     }
 
 

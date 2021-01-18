@@ -5,7 +5,7 @@
         titleAlignment="Center"
         showCloseButton="false"
         contentWidth="250px"
-        contentHeight="290px"
+        contentHeight="225px"
         class="kellojoMUserHelpMenu-popover">
 
         <customHeader>
@@ -39,13 +39,24 @@
             </List>
 
             <Page id="idSettingsPage" showHeader="false">
-                 <List class="kellojoMUserHelpMenu-list" height="100%">
-                    <CustomListItem>
+                 <List class="kellojoMUserHelpMenu-list">
+
+                    <CustomListItem class="kellojoMUserHelpMenu-itemSpacer">
                         <kM:Wrapper class="kellojoMUserHelpMenu-customListItem">
                             <Label text="{$this>/darkModeLabel}" />
                             <Switch state="{$this>/darkModeEnabled}" change="onSwitchDarkMode" />
                         </kM:Wrapper>
                     </CustomListItem>
+
+                    <CustomListItem>
+                        <kM:Wrapper class="kellojoMUserHelpMenu-customListItem">
+                            <Label text="{$this>/currencyLabel}" />
+                            <Select items="{$this>/availableCurrencies}" change="onSelectCurrency" selectedKey="{$this>/selectedCurrency}">
+                                <core:Item key="{$this>code}" text="{$this>code} ({ parts: ['$this>code'], formatter: '.formatCurrencySymbol'})"/>
+                            </Select>
+                        </kM:Wrapper>
+                    </CustomListItem>
+
                  </List>
             </Page>
 

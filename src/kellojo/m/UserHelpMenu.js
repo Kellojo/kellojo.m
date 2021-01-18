@@ -3,8 +3,9 @@ sap.ui.define([
     "sap/ui/core/XMLComposite",
     "sap/ui/core/Core",
     "sap/m/StandardListItem",
-    "sap/ui/Device"
-], function (XMLComposite, Core, StandardListItem, Device) {
+    "sap/ui/Device",
+    "sap/ui/core/format/NumberFormat",
+], function (XMLComposite, Core, StandardListItem, Device, NumberFormat) {
     var UserHelpMenu = XMLComposite.extend("kellojo.m.UserHelpMenu", {
         metadata: {
             properties: {
@@ -26,6 +27,13 @@ sap.ui.define([
                 darkModeEnabled: {
                     type: "boolean",
                     defaultValue: false
+                },
+
+                currencyLabel: { type: "string", defaultValue: Core.getLibraryResourceBundle("kellojo.m").getText("userHelpMenuCurrencyLabel") },
+                availableCurrencies: { type: "object[]" },
+                selectedCurrency: {
+                    type: "string",
+                    defaultValue: "EUR"
                 },
 
                 isPhone: {
@@ -54,6 +62,14 @@ sap.ui.define([
                             type: "boolean"
                         }
                     }
+                },
+
+                currencyChange: {
+                    parameters: {
+                        currency: {
+                            type: "string"
+                        }
+                    }
                 }
             }
         },
@@ -71,6 +87,10 @@ sap.ui.define([
             this.fireClose();
             this.destroy();
         }.bind(this));
+
+        this.m_oNumberFormat = NumberFormat.getCurrencyInstance({
+            showMeasure: false
+        });
     };
 
     UserHelpMenuProto.openBy = function(oSourceControl, sPlacement) {
@@ -104,12 +124,23 @@ sap.ui.define([
         });
     }
 
+    UserHelpMenuProto.onSelectCurrency = function(oEvent) {
+        this.fireCurrencyChange({
+            currency: oEvent.getParameter("selectedItem").getKey()
+        });
+    }
+
     // --------------------------
     // Getters & Setters
     // --------------------------
 
     UserHelpMenuProto.getTitle = function() {
         return this.getProperty("title") ||  Core.getLibraryResourceBundle("kellojo.m").getText("userHelpMenuTitle");
+    }
+
+
+    UserHelpMenuProto.formatCurrencySymbol = function(sCurrency) {
+        return this.m_oNumberFormat.oLocaleData.getCurrencySymbol(sCurrency);
     }
 
     return UserHelpMenu;
