@@ -3,6 +3,7 @@
         <NavContainer id="idNavContainer" class="kellojoMLogin-navContainer">
 
             <kM:Wrapper id="idSignInPage" class="kellojoMLogin-page">
+                <Title text="{$this>/appTitle}" class="kellojoMLogin-appTitle" visible="{$this>/appTitleVisible}"/>
                 <kM:Wrapper class="kellojoMLogin-container">
                     <Text text="{$this>login_title}" class="kellojoMLogin-title" />
 
@@ -28,6 +29,7 @@
             </kM:Wrapper>
 
             <kM:Wrapper id="idSignUpPage" class="kellojoMLogin-page">
+                <Title text="{$this>/appTitle}" class="kellojoMLogin-appTitle" visible="{$this>/appTitleVisible}"/>
                 <kM:Wrapper class="kellojoMLogin-container">
                     <Text text="{$this>registration_title}" class="kellojoMLogin-title" />
 
