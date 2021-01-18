@@ -1,9 +1,10 @@
 @budgetBookApp-Page-HeaderHeight: 3.5rem;
 
 .kellojoMUserHelpMenu-list {
-    height: 100%;
+    height: auto;
     padding: 2 * @defaultPadding 0 !important;
     background-color: @sapUiGlobalBackgroundColor;
+    border: none;
 }
 
 .kellojoMUserHelpMenu-itemSpacer {
@@ -32,6 +33,10 @@
 }
 
 .sap-phone {
+
+    .kellojoMUserHelpMenu-list {
+        height: 100%;
+    }
     
     .kellojoMUserHelpMenu-itemSpacer {
         margin-bottom: 2 * @defaultPadding;

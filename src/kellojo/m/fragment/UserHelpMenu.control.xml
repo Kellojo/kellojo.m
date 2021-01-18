@@ -5,7 +5,7 @@
         titleAlignment="Center"
         showCloseButton="false"
         contentWidth="250px"
-        contentHeight="225px"
+        contentHeight="100px"
         class="kellojoMUserHelpMenu-popover">
 
         <customHeader>
@@ -35,7 +35,7 @@
 
                 <StandardListItem title="{$this>/settingsLabel}" icon="sap-icon://action-settings" press="onSettingsPress" type="Navigation" class="kellojoMUserHelpMenu-itemSpacer"/>
 
-                <StandardListItem title="{$this>/signOutLabel}" icon="sap-icon://log" press="fireSignOutPress" type="Active" class="kellojoMUserHelpMenu-itemSpacer"/>
+                <StandardListItem title="{$this>/signOutLabel}" icon="sap-icon://log" press="fireSignOutPress" type="Active"/>
             </List>
 
             <Page id="idSettingsPage" showHeader="false">

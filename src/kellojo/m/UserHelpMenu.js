@@ -91,7 +91,19 @@ sap.ui.define([
         this.m_oNumberFormat = NumberFormat.getCurrencyInstance({
             showMeasure: false
         });
+
+        this.m_oPopover.addEventDelegate({
+            onAfterRendering: this.onAfterRendering.bind(this)
+        });
     };
+
+    UserHelpMenuProto.onAfterRendering = function() {
+        let iHeight = 0;
+
+        iHeight = this.m_oList.$().outerHeight(true);
+
+        this.m_oPopover.setContentHeight(iHeight + "px");
+    }
 
     UserHelpMenuProto.openBy = function(oSourceControl, sPlacement) {
         this.m_oPopover.setPlacement(sPlacement);
