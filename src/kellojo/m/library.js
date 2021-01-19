@@ -25,10 +25,22 @@ sap.ui.define([
             "kellojo.m.UserHelpMenu",
             "kellojo.m.beans.BeanBase",
             "kellojo.m.beans.ThemeManager",
+            "kellojo.m.Input",
         ],
 		elements: [],
 		version: "1.0.0"
-	});
+    });
+    
+
+    kellojo.m.InputMode = {
+        Numeric: "numeric",
+        Text: "text",
+        Decimal: "decimal",
+        Tel: "tel",
+        Search: "search",
+        Email: "email",
+        Url: "url",
+    }
 
 	return kellojo.m;
 
