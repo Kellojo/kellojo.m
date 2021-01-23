@@ -44,6 +44,11 @@ sap.ui.define([
                 backButtonVisible: {
                     type: "boolean",
                     defaultValue: false
+                },
+
+                installationHintVisible: {
+                    type: "boolean",
+                    defaultValue: false
                 }
             },
 

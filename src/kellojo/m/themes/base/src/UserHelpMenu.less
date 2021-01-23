@@ -4,7 +4,7 @@
     height: auto !important;
     padding: 2 * @defaultPadding 0 !important;
     background-color: @sapUiGlobalBackgroundColor;
-    border: none;
+    border-bottom: none !important;
 }
 
 .kellojoMUserHelpMenu-itemSpacer {
@@ -21,6 +21,13 @@
     justify-content: space-between;
 }
 
+.kellojoMUserHelpMenu-page {
+    display: flex !important;
+    flex-direction: column;
+    width: 100%;
+    background-color: @sapUiGlobalBackgroundColor;
+}
+
 .sap-phone .kellojoMUserHelpMenu-BackButton {
     .sapMBtnActive {
         background-color: transparent !important;
@@ -34,8 +41,8 @@
 
 .sap-phone {
 
-    .kellojoMUserHelpMenu-list {
-        height: 100% !important;
+    .kellojoMUserHelpMenu-page {
+        height: 100%;
     }
     
     .kellojoMUserHelpMenu-itemSpacer {
