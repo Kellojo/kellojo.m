@@ -39,14 +39,14 @@
 
         <kM:Wrapper class="kellojoMTransactionEditor-FormInputContainer">
             <Label text="{i18n>addTransactionDialogInputCategory}" labelFor="idCategoryInput"/>
-            <ComboBox
+            <kM:ComboBox
                 id="idCategoryInput"
                 value="{$this>/category}"
                 placeholder="{i18n>addTransactionDialogInputCategoryPlaceholder}"
                 items="{$this>/categories}"
                 width="100%">
                     <core:Item key="{$this>}" text="{$this>}" />
-                </ComboBox>
+            </kM:ComboBox>
         </kM:Wrapper>
 
         <kM:Wrapper class="kellojoMTransactionEditor-FormInputContainer">
