@@ -2,8 +2,9 @@ sap.ui.define([
     "sap/ui/core/XMLComposite",
     "sap/ui/core/ValueState",
     "sap/ui/core/Core",
-    "kellojo/m/library"
-], function (XMLComposite, ValueState, Core, library) {
+    "sap/ui/core/format/NumberFormat",
+    "kellojo/m/library",
+], function (XMLComposite, ValueState, Core, NumberFormat, library) {
     var TransactionEditor = XMLComposite.extend("kellojo.m.TransactionEditor", {
         metadata: {
             properties: {
@@ -39,6 +40,15 @@ sap.ui.define([
                 amount: {
                     type: "Number",
                     defaultValue: 0
+                },
+
+                _amount: {
+                    type: "any",
+                    defaultValue: ["0", "€"]
+                },
+                currency: {
+                    type: "string",
+                    defaultValue: "EUR"
                 },
 
                 customErrorMessage: {
@@ -83,6 +93,10 @@ sap.ui.define([
         XMLComposite.prototype.init.apply(this, arguments);
         this.addStyleClass("kellojoMTransactionEditor");
 
+        this.m_oNumberFormat = NumberFormat.getCurrencyInstance({
+            showMeasure: false
+        });
+
         // validation setup
         this.m_aFormFields = [
             {control: this.byId("idTitleInput"), minLength: 3 },
@@ -94,9 +108,29 @@ sap.ui.define([
         }
     };
 
+    TransactionEditorProto.onAmountChange = function() {
+        this.setAmount(this.get_amount()[0]);
+    }
+
     // ----------------------------
     // Getters & Setters
     // ----------------------------
+
+    TransactionEditorProto.setAmount = function(iAmount) {
+        this.setProperty("amount", iAmount);
+        this.set_amount([
+            iAmount,
+            this.m_oNumberFormat.oLocaleData.getCurrencySymbol(this.getCurrency())
+        ]);
+    }
+
+    TransactionEditorProto.setCurrency = function(sCurrency) {
+        this.setProperty("currency", sCurrency);
+
+        var aAmount = this.get_amount();
+        aAmount[1] = this.m_oNumberFormat.oLocaleData.getCurrencySymbol(this.getCurrency());
+        this.set_amount(aAmount);
+    }
 
 
     // ----------------------------
@@ -126,7 +160,11 @@ sap.ui.define([
             }
 
             // min value
-            if (oControlInfo.hasOwnProperty("minValue") && parseFloat(oControl.getNumericValue()) <= oControlInfo.minValue) {
+            var iNumericValue = oControl.getBinding("value").getValue();
+            if (Array.isArray(iNumericValue)) {
+                iNumericValue = iNumericValue[0];
+            }
+            if (oControlInfo.hasOwnProperty("minValue") && parseFloat(iNumericValue) <= oControlInfo.minValue) {
                 bIsControlValid = false;
                 sValueStateText = oResourceBundle.getText("formValidationMinValueNotReached", [oControlInfo.minValue]);
             }

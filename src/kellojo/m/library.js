@@ -16,7 +16,6 @@ sap.ui.define([
             "kellojo.m.Wrapper",
             "kellojo.m.LineChart",
             "kellojo.m.ColumnChart",
-            "kellojo.m.CurrencyInput",
             "kellojo.m.Currency",
             "kellojo.m.Deleter",
             "kellojo.m.CameraCapture",
@@ -25,6 +24,8 @@ sap.ui.define([
             "kellojo.m.SortColumn",
             "kellojo.m.UserHelpMenu",
             "kellojo.m.beans.BeanBase",
+            "kellojo.m.beans.ThemeManager",
+            "kellojo.m.Input",
         ],
 		elements: [],
 		version: "1.0.0"
@@ -35,7 +36,17 @@ sap.ui.define([
         WEEKLY: "WEEKLY",
         MONTHLY: "MONTHLY",
         YEARLY: "YEARLY",
-    }
+    };
+
+    kellojo.m.InputMode = {
+        Numeric: "numeric",
+        Text: "text",
+        Decimal: "decimal",
+        Tel: "tel",
+        Search: "search",
+        Email: "email",
+        Url: "url",
+    };
 
 	return kellojo.m;
 

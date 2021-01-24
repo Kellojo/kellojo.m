@@ -1,0 +1,20 @@
+
+.kellojoMDeleter {
+    .sapMSLITitleOnly {
+        text-align: center;
+        color: @sapUiErrorColor;
+    }
+
+    &.sapMLIBActive {
+        background-color: @sapUiErrorColor;
+        .sapMSLITitleOnly {
+            color: @white;
+        }
+    }
+
+    border-bottom: 1px solid @sapUiListBorderColor;
+    border-top: 1px solid @sapUiListBorderColor;
+
+    margin-top: 3 * @defaultPadding;
+    margin-bottom: 3 * @defaultPadding;;
+}

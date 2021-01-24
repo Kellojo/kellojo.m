@@ -1,0 +1,48 @@
+.sapUiMnuItm[data-iscurrentmonth="true"] {
+    color: @sapUiLegendCurrentDateTime  !important;
+
+    &:active {
+        color: @sapUiButtonActiveTextColor  !important;
+    }
+}
+
+.sapUiMnuItm[data-isyear="true"] {
+    background-color: @sapUiGlobalBackgroundColor;
+}
+
+.sapUiMnuItm[data-isyear="false"] {
+    padding-left: @tinyPadding;
+}
+
+.budgetBookOverview-transactionItem {
+    &:hover {
+        .budgetBookOverview-deleteIcon .sapMBtnIcon {
+            color: @sapUiErrorColor;
+        }
+    }
+}
+
+.budgetBookOverview-deleteIcon {
+    background-color: transparent;
+    border: none;
+
+    .sapMBtnIcon {
+        cursor: pointer;
+        color: transparent;
+        transition: color 0.2s ease-out;
+    }
+}
+
+.sap-phone {
+    .budgetBookOverview-transactionItem {
+
+        .sapMListTblHighlightCell, .sapMListTblNavigatedCell {
+            display: none;
+        }
+    }
+
+    .budgetBookOverview-transactionItem-checkBoxColumn {
+        width: 32px !important;
+    }
+    
+}

@@ -2,9 +2,17 @@
 @kellojo-login-inputHeight: 2.625rem;
 
 .kellojoMLogin {
-    background-color: @backgroundGrey;
+    background-color: @sapUiGlobalBackgroundColor;
 }
 
+.kellojoMLogin-appTitle {
+    font-size: 2rem !important;
+    padding: 2 * @defaultPadding;
+
+    background-image: linear-gradient(to left, @budgetBookApp-BrandColor, @budgetBookApp-BrandColorSecondary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
 .kellojoMLogin-page:not(.sapMNavItemHidden) {
     width: 100%;
@@ -32,7 +40,7 @@
 
 .kellojoMLogin-loginForm {
 
-    border: 1px solid @borderGrey;
+    border: 1px solid @sapUiListBorderColor;
     border-radius: @roundBorderRadius;
     background-color: @white;
 
@@ -55,11 +63,11 @@
 
         .sapMInputBaseContentWrapperError {
             .sapMInputBaseInner {
-                color: @error;
+                color: @sapUiErrorColor;
             }
 
             ::placeholder {
-                color: @error;
+                color: @sapUiErrorColor;
             }
         }
     }
@@ -67,7 +75,7 @@
 }
 
 .kellojoMLogin-errorMessage {
-    color: @error !important;
+    color: @sapUiErrorColor !important;
     transition: padding 0.3s ease-out;
     padding-bottom: @defaultPadding;
     text-align: center !important;
@@ -153,13 +161,13 @@
     padding: @defaultPadding 0;
     margin: @defaultPadding auto;
 
-    border-top: 1px solid @borderGrey;
+    border-top: 1px solid @sapUiListBorderColor;
 
     .sapMLnk {
-        color: @secondaryBlue;
+        color: @sapUiLinkActive;
     }
 
     .sapMLnk:focus {
-        color: @secondaryBlue  !important;
+        color: @sapUiLinkActive  !important;
     }
 }

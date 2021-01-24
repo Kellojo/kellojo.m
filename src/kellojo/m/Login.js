@@ -5,6 +5,14 @@ sap.ui.define([
         var Login =  XMLComposite.extend("kellojo.m.Login", {
             metadata: {
                 properties: {
+                    appTitle: {
+                        type: "string"
+                    },
+                    appTitleVisible: {
+                        type: "boolean",
+                        defaultValue: false
+                    },
+
                     login_title: {
                         type: "string"
                     },
