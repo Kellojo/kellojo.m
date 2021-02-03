@@ -74,7 +74,7 @@ sap.ui.define([
                 },
                 today: {
                     type: "object",
-                    defaultValue: new Date()
+                    defaultValue: null,
                 }
             },
 

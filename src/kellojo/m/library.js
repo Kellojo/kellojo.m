@@ -38,6 +38,13 @@ sap.ui.define([
         YEARLY: "YEARLY",
     };
 
+    kellojo.m.TransactionreccurrenceTypeSortOrder = {
+        DAILY: 1,
+        WEEKLY: 2,
+        MONTHLY: 3,
+        YEARLY: 4,
+    };
+
     kellojo.m.InputMode = {
         Numeric: "numeric",
         Text: "text",

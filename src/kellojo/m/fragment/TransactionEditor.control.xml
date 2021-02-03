@@ -66,14 +66,13 @@
 
         <kM:Wrapper class="kellojoMTransactionEditor-FormInputContainer">
             <Label text="{i18n>addTransactionDialogInputReccurrence}" labelFor="idReccurrenceInput"/>
-            <ComboBox
+            <Select
                 id="idReccurrenceInput"
                 selectedKey="{$this>/reccurrence}"
-                placeholder="{i18n>addTransactionDialogInputReccurrence}"
                 items="{$this>/reccurrences}"
                 width="100%">
                     <core:Item key="{$this>key}" text="{$this>text}" />
-                </ComboBox>
+            </Select>
         </kM:Wrapper>
 
         <kM:Wrapper class="kellojoMTransactionEditor-FormInputContainer">
