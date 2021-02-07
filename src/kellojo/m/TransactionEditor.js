@@ -112,6 +112,10 @@ sap.ui.define([
         this.setAmount(this.get_amount()[0]);
     }
 
+    TransactionEditorProto.focusTitle = function() {
+        this.byId("idTitleInput").focus();
+    }
+
     // ----------------------------
     // Getters & Setters
     // ----------------------------
