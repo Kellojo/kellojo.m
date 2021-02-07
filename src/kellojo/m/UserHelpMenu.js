@@ -51,6 +51,10 @@ sap.ui.define([
                 installationHintVisible: {
                     type: "boolean",
                     defaultValue: false
+                },
+                signOutVisible: {
+                    type: "boolean",
+                    defaultValue: false
                 }
             },
 
