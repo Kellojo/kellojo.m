@@ -22,6 +22,8 @@ sap.ui.define([
                 websiteLabel: { type: "string", defaultValue: Core.getLibraryResourceBundle("kellojo.m").getText("UserHelpMenuWebsite") },
                 settingsLabel: { type: "string", defaultValue: Core.getLibraryResourceBundle("kellojo.m").getText("UserHelpMenuSettings") },
                 signOutLabel: { type: "string", defaultValue: Core.getLibraryResourceBundle("kellojo.m").getText("UserHelpMenuSignOut") },
+                openSourceLabel: { type: "string", defaultValue: Core.getLibraryResourceBundle("kellojo.m").getText("UserHelpMenuOpenSource") },
+                openSourceLicenses: { type: "object", defaultValue: null },
 
                 darkModeLabel: { type: "string", defaultValue: Core.getLibraryResourceBundle("kellojo.m").getText("userHelpMenuDarkMode") },
                 darkModeEnabled: {
@@ -125,6 +127,11 @@ sap.ui.define([
         this.setBackButtonVisible(true);
     }
 
+    UserHelpMenuProto.onOpenSourcePress = function() {
+        this.m_oNavCon.to(this.byId("idOpenSourcePage"));
+        this.setBackButtonVisible(true);
+    }
+
     UserHelpMenuProto.onBackPress = function() {
         this.m_oPopover._getPopup().setAutoClose(false);
         setTimeout(() => {
@@ -140,7 +147,6 @@ sap.ui.define([
             enabled: oEvent.getParameter("state")
         });
     }
-
     UserHelpMenuProto.onSelectCurrency = function(oEvent) {
         this.fireCurrencyChange({
             currency: oEvent.getParameter("selectedItem").getKey()
