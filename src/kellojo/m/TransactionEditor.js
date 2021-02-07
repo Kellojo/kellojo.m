@@ -3,10 +3,15 @@ sap.ui.define([
     "sap/ui/core/ValueState",
     "sap/ui/core/Core",
     "sap/ui/core/format/NumberFormat",
-], function (XMLComposite, ValueState, Core, NumberFormat) {
+    "kellojo/m/library",
+], function (XMLComposite, ValueState, Core, NumberFormat, library) {
     var TransactionEditor = XMLComposite.extend("kellojo.m.TransactionEditor", {
         metadata: {
             properties: {
+                isPlannedTransaction: {
+                    type: "boolean",
+                    defaultValue: false
+                },
 
                 title: {
                     type: "string",
@@ -48,9 +53,29 @@ sap.ui.define([
 
                 customErrorMessage: {
                     type: "string"
+                },
+
+                reccurrence: {
+                    type: "kellojo.m.TransactionreccurrenceType",
+                    defaultValue: library.TransactionreccurrenceType.MONTHLY
+                },
+                reccurrences: {
+                    type: "string[]",
+                    defaultValue: [
+                        { key: library.TransactionreccurrenceType.DAILY, text: Core.getLibraryResourceBundle("kellojo.m").getText("reccurrenceDAILY")},
+                        { key: library.TransactionreccurrenceType.WEEKLY, text: Core.getLibraryResourceBundle("kellojo.m").getText("reccurrenceWEEKLY")},
+                        { key: library.TransactionreccurrenceType.MONTHLY, text: Core.getLibraryResourceBundle("kellojo.m").getText("reccurrenceMONTHLY")},
+                        { key: library.TransactionreccurrenceType.YEARLY, text: Core.getLibraryResourceBundle("kellojo.m").getText("reccurrenceYEARLY")},
+                    ]
+                },
+                startingFrom: {
+                    type: "object",
+                    defaultValue: new Date()
+                },
+                today: {
+                    type: "object",
+                    defaultValue: null,
                 }
-
-
             },
 
             events: {
@@ -76,7 +101,11 @@ sap.ui.define([
         this.m_aFormFields = [
             {control: this.byId("idTitleInput"), minLength: 3 },
             {control: this.byId("idAmountInput"), minValue: 0 }
-        ]
+        ];
+
+        if (this.getIsPlannedTransaction()) {
+            this.m_aFormFields.push();
+        }
     };
 
     TransactionEditorProto.onAmountChange = function() {

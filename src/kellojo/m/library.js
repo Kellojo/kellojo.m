@@ -31,6 +31,19 @@ sap.ui.define([
 		version: "1.0.0"
     });
     
+    kellojo.m.TransactionreccurrenceType = {
+        DAILY: "DAILY",
+        WEEKLY: "WEEKLY",
+        MONTHLY: "MONTHLY",
+        YEARLY: "YEARLY",
+    };
+
+    kellojo.m.TransactionreccurrenceTypeSortOrder = {
+        DAILY: 1,
+        WEEKLY: 2,
+        MONTHLY: 3,
+        YEARLY: 4,
+    };
 
     kellojo.m.InputMode = {
         Numeric: "numeric",
@@ -40,7 +53,7 @@ sap.ui.define([
         Search: "search",
         Email: "email",
         Url: "url",
-    }
+    };
 
 	return kellojo.m;
 

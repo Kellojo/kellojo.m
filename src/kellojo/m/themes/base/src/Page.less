@@ -47,6 +47,10 @@
 
             .sapMSF {
                 max-width: 20rem;
+
+                .sapMSFF {
+                    border-radius: @roundBorderRadius;
+                }
             }
         }
 
@@ -71,6 +75,45 @@
         .kellojoM-page-header {
             box-shadow: @defaultBoxShadow;
         }
+    }
+    
+}
+
+.kellojoM-page-header-title {
+    .sapMMenuBtn {
+        max-width: 16.5rem !important;
+
+        .sapMBtn {
+            width: auto !important;
+            max-width: 100%;
+        }
+
+        .sapMBtnInner {
+            padding-left: 0px !important;
+            background-color: transparent !important;
+            border: none !important
+        }
+
+        .sapMBtnContent, .sapMBtnInner::after {
+            font-size: @titleFontSize !important;
+            color: @sapUiButtonTextColor !important;
+        }
+
+        .sapMBtnInner::after {
+            right: -@halfPadding !important;
+        }
+
+        .sapMBtnDisabled {
+            opacity: 1;
+
+            .sapMBtnInner {
+                padding-right: 0 !important;
+                &::after {
+                    display: none;
+                }
+            }
+        }
+        
     }
 }
 
@@ -110,8 +153,7 @@
                     max-width: 100%;
 
                     .sapMSFF {
-                        border-radius: @roundBorderRadius;
-                            transition: border-color 0.3s ease-out;
+                        transition: border-color 0.3s ease-out;
                     }
                 }
             }

@@ -49,7 +49,7 @@
             </kM:ComboBox>
         </kM:Wrapper>
 
-        <kM:Wrapper class="kellojoMTransactionEditor-FormInputContainer">
+        <kM:Wrapper class="kellojoMTransactionEditor-FormInputContainer"  visible="{= !${$this>/isPlannedTransaction}}">
             <Label text="{i18n>addTransactionDialogInputOccurredOn}" labelFor="idDateInput"/>
             <DatePicker id="idDateInput" dateValue="{$this>/occurredOn}"/>
         </kM:Wrapper>
@@ -58,8 +58,32 @@
             <CheckBox id="idIsPaidCheckBox" selected="{$this>/isCompleted}" text="{i18n>addTransactionDialogInputIsCompleted}"
                 tooltip="{i18n>addTransactionDialogInputIsCompletedTooltip}"/>
         </kM:Wrapper>
+    </kM:Wrapper>
+
+    <kM:Divider visible="{$this>/isPlannedTransaction}" />
+
+    <kM:Wrapper class="kellojoMTransactionEditor-container" visible="{$this>/isPlannedTransaction}">
+
+        <kM:Wrapper class="kellojoMTransactionEditor-FormInputContainer">
+            <Label text="{i18n>addTransactionDialogInputReccurrence}" labelFor="idReccurrenceInput"/>
+            <Select
+                id="idReccurrenceInput"
+                selectedKey="{$this>/reccurrence}"
+                items="{$this>/reccurrences}"
+                width="100%">
+                    <core:Item key="{$this>key}" text="{$this>text}" />
+            </Select>
+        </kM:Wrapper>
+
+        <kM:Wrapper class="kellojoMTransactionEditor-FormInputContainer">
+            <Label text="{i18n>addTransactionDialogInputStartingFrom}" labelFor="idStartingFromDateInput"/>
+            <DatePicker id="idStartingFromDateInput" minDate="{$this>/today}" dateValue="{$this>/startingFrom}"/>
+        </kM:Wrapper>
 
     </kM:Wrapper>
+
+
+
 </kM:Wrapper>
 
 </core:FragmentDefinition>
