@@ -14,6 +14,6 @@ also make sure, to add it to the resource roots:
 ```javascript
 data-sap-ui-resourceroots='{
     "com.yourApp": "./",
-    "com.kellojo.m": "./lib/kellojo.m/src/"
+    "com.kellojo.m": "resources/kellojo/m"
 }'
 ```
