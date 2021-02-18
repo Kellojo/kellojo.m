@@ -49,15 +49,22 @@
 
                     <CustomListItem class="kellojoMUserHelpMenu-itemSpacer">
                         <kM:Wrapper class="kellojoMUserHelpMenu-customListItem">
-                            <Label text="{$this>/darkModeLabel}" />
-                            <Switch state="{$this>/darkModeEnabled}" change="onSwitchDarkMode" />
+                            <Label text="{$this>/themeLabel}" />
+                            <SegmentedButton items="{$this>/themes}" selectionChange="onChangeTheme" selectedKey="{$this>/selectedTheme}">
+                                <items>
+                                    <SegmentedButtonItem 
+                                        text="{ path: '$this>', formatter: '.formatThemeName' }" 
+                                        key="{$this>}" 
+                                        tooltip="{ path: '$this>', formatter: '.formatThemeTooltip' }"/>
+                                </items>
+                            </SegmentedButton>
                         </kM:Wrapper>
                     </CustomListItem>
 
                     <CustomListItem>
                         <kM:Wrapper class="kellojoMUserHelpMenu-customListItem">
                             <Label text="{$this>/currencyLabel}" />
-                            <Select items="{$this>/availableCurrencies}" change="onSelectCurrency" selectedKey="{$this>/selectedCurrency}">
+                            <Select items="{$this>/availableCurrencies}" change="onSelectCurrency" selectedKey="{$this>/selectedCurrency}" class="kellojoMUserHelpMenu-combobox">
                                 <core:Item key="{$this>code}" text="{$this>code} ({ parts: ['$this>code'], formatter: '.formatCurrencySymbol'})"/>
                             </Select>
                         </kM:Wrapper>

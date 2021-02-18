@@ -1,20 +1,27 @@
 sap.ui.define([
     "kellojo/m/beans/BeanBase",
-    "sap/base/Log"
-], function (ManagedObject, Log) {
+    "sap/base/Log",
+    "kellojo/m/library"
+], function (ManagedObject, Log, library) {
     "use strict";
 
     var oSchema = ManagedObject.extend("kellojo.m.beans.ThemeManager", {
         metadata: {
             properties: {
-                storageKey: {
-                    type: "string",
-                    defaultValue: "theme"
-                },
-                defaultTheme: {
-                    type: "string",
-                    defaultValue: "sap_fiori_3"
-                },
+                theme: {
+                    type: "kellojo.m.Theme",
+                    defaultValue: library.Theme.Auto,
+                }
+            },
+
+            events: {
+                themeChange: {
+                    parameters: {
+                        theme: {
+                            type: "kellojo.m.Theme",
+                        }
+                    }
+                }
             }
         }
     }),
@@ -22,8 +29,12 @@ sap.ui.define([
 
 
     SchemaProto.onInit = function () {
-        this.setTheme(this.getTheme());
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', this.onColorSchemeChange.bind(this));
     };
+
+    SchemaProto.onColorSchemeChange = function(oEvent) {
+        this.setTheme(this.getTheme());
+    }
 
 
     /**
@@ -32,26 +43,29 @@ sap.ui.define([
      * @public
      */
     SchemaProto.setTheme = function (sTheme) {
-        localStorage.setItem(this.getStorageKey(), sTheme);
-        sap.ui.getCore().applyTheme(sTheme);
+        if (sTheme != this.getTheme()) {
+            this.fireThemeChange({
+                theme: sTheme,
+            });
+        }
+
+        this.setProperty("theme", sTheme);
+        let sAppliedTheme = sTheme;
+        if (sTheme === library.Theme.Auto) {
+            sAppliedTheme = this.getDefaultTheme();
+        }
+        
+        sap.ui.getCore().applyTheme(sAppliedTheme);
     };
 
     /**
-     * Applies the given theme
-     * @returns {string} sTheme
+     * Get's the default theme by the system
+     * @returns {string}
      * @public
      */
-    SchemaProto.getTheme = function() {
-        return localStorage.getItem(this.getStorageKey()) || this.getDefaultTheme();
-    };
-
-    /**
-     * Is the dark theme active
-     * @returns {boolean}
-     * @public
-     */
-    SchemaProto.isDarkTheme = function() {
-        return this.getTheme() === "sap_fiori_3_dark";
+    SchemaProto.getDefaultTheme = function() {
+        const bIsDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        return bIsDarkMode ? "sap_fiori_3_dark" : "sap_fiori_3";
     }
 
 

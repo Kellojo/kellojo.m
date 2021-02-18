@@ -55,6 +55,28 @@ sap.ui.define([
         Url: "url",
     };
 
+    kellojo.m.Theme = {
+        Auto: "auto",
+        Light: "sap_fiori_3",
+        Dark: "sap_fiori_3_dark",
+    };
+
+
+    /**
+     * Get's the kellojo.m.Theme for a given theme string (fallback kellojo.m.Theme.Auto)
+     * @param {string} sTheme 
+     * @returns {kellojo.m.Theme}
+     */
+    kellojo.m.mapStringToTheme = function(sTheme) {
+        for (var sKey in kellojo.m.Theme) {
+            if (kellojo.m.Theme[sKey] === sTheme) {
+                return sTheme;
+            }
+        }
+
+        return kellojo.m.Theme.Auto;
+    }
+
 	return kellojo.m;
 
 }, /* bExport= */ false);

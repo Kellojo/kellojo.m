@@ -2,10 +2,10 @@
 sap.ui.define([
     "sap/ui/core/XMLComposite",
     "sap/ui/core/Core",
-    "sap/m/StandardListItem",
     "sap/ui/Device",
     "sap/ui/core/format/NumberFormat",
-], function (XMLComposite, Core, StandardListItem, Device, NumberFormat) {
+    "kellojo/m/library"
+], function (XMLComposite, Core, Device, NumberFormat, library) {
     var UserHelpMenu = XMLComposite.extend("kellojo.m.UserHelpMenu", {
         metadata: {
             properties: {
@@ -25,11 +25,7 @@ sap.ui.define([
                 openSourceLabel: { type: "string", defaultValue: Core.getLibraryResourceBundle("kellojo.m").getText("UserHelpMenuOpenSource") },
                 openSourceLicenses: { type: "object", defaultValue: null },
 
-                darkModeLabel: { type: "string", defaultValue: Core.getLibraryResourceBundle("kellojo.m").getText("userHelpMenuDarkMode") },
-                darkModeEnabled: {
-                    type: "boolean",
-                    defaultValue: false
-                },
+                themeLabel: { type: "string", defaultValue: Core.getLibraryResourceBundle("kellojo.m").getText("userHelpMenuTheme") },
 
                 currencyLabel: { type: "string", defaultValue: Core.getLibraryResourceBundle("kellojo.m").getText("userHelpMenuCurrencyLabel") },
                 availableCurrencies: { type: "object[]" },
@@ -55,6 +51,19 @@ sap.ui.define([
                 signOutVisible: {
                     type: "boolean",
                     defaultValue: false
+                },
+
+                themes: {
+                    type: "array",
+                    defaultValue: [
+                        library.Theme.Light,
+                        library.Theme.Dark,
+                        library.Theme.Auto
+                    ],
+                },
+                selectedTheme: {
+                    type: "kellojo.m.Theme",
+                    defaultValue: library.Theme.Auto,
                 }
             },
 
@@ -67,10 +76,10 @@ sap.ui.define([
                 websitePress: {},
                 signOutPress: {},
 
-                switchDarkMode: {
+                themeChange: {
                     parameters: {
-                        enabled: {
-                            type: "boolean"
+                        theme: {
+                            type: "kellojo.m.Theme"
                         }
                     }
                 },
@@ -146,15 +155,22 @@ sap.ui.define([
         this.setBackButtonVisible(false);
     }
 
-    UserHelpMenuProto.onSwitchDarkMode = function(oEvent) {
-        this.fireSwitchDarkMode({
-            enabled: oEvent.getParameter("state")
+    UserHelpMenuProto.onChangeTheme = function(oEvent) {
+        this.fireThemeChange({
+            theme: oEvent.getParameter("item").getKey(),
         });
     }
     UserHelpMenuProto.onSelectCurrency = function(oEvent) {
         this.fireCurrencyChange({
             currency: oEvent.getParameter("selectedItem").getKey()
         });
+    }
+
+    UserHelpMenuProto.formatThemeName = function(sThemeKey) {
+        return Core.getLibraryResourceBundle("kellojo.m").getText("theme-" + sThemeKey);
+    }
+    UserHelpMenuProto.formatThemeTooltip = function(sThemeKey) {
+        return Core.getLibraryResourceBundle("kellojo.m").getText("themeTooltip-" + sThemeKey);
     }
 
     // --------------------------
