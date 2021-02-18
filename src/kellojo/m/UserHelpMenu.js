@@ -25,6 +25,7 @@ sap.ui.define([
                 openSourceLabel: { type: "string", defaultValue: Core.getLibraryResourceBundle("kellojo.m").getText("UserHelpMenuOpenSource") },
                 openSourceLicenses: { type: "object", defaultValue: null },
 
+                email: {type: "string", defaultValue: ""},
                 themeLabel: { type: "string", defaultValue: Core.getLibraryResourceBundle("kellojo.m").getText("userHelpMenuTheme") },
 
                 currencyLabel: { type: "string", defaultValue: Core.getLibraryResourceBundle("kellojo.m").getText("userHelpMenuCurrencyLabel") },
@@ -101,6 +102,7 @@ sap.ui.define([
 
     UserHelpMenuProto.init = function() {
         this.m_oList = this.byId("idList");
+        this.m_oMainPage = this.byId("idMainPage");
         this.m_oPopover = this.byId("idPopover");
         this.m_oNavCon = this.byId("idNavContainer");
         this.m_oPopover.attachAfterClose(function() {
@@ -120,7 +122,7 @@ sap.ui.define([
     UserHelpMenuProto.onAfterRendering = function() {
         let iHeight = 0;
 
-        iHeight = this.m_oList.$().outerHeight(true);
+        iHeight = this.m_oMainPage.$().outerHeight(true);
 
         this.m_oPopover.setContentHeight(iHeight + "px");
     }
@@ -171,6 +173,10 @@ sap.ui.define([
     }
     UserHelpMenuProto.formatThemeTooltip = function(sThemeKey) {
         return Core.getLibraryResourceBundle("kellojo.m").getText("themeTooltip-" + sThemeKey);
+    }
+
+    UserHelpMenuProto.formatEmailText = function(sEmail) {
+        return Core.getLibraryResourceBundle("kellojo.m").getText("userHelpMenuSignedInAs", sEmail);
     }
 
     // --------------------------
