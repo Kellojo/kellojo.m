@@ -22,7 +22,10 @@
                 value="{$this>/title}"
                 valueLiveUpdate="true"
                 required="true"
-            />
+                showSuggestion="{$this>/showTitleSuggestion}"
+                suggestionItems="{$this>/titleSuggestions}">
+                <core:Item text="{$this>}"/>
+            </Input>
         </kM:Wrapper>
 
         <kM:Wrapper class="kellojoMTransactionEditor-FormInputContainer">

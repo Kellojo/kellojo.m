@@ -4,7 +4,8 @@ sap.ui.define([
     "sap/ui/core/Core",
     "sap/ui/core/format/NumberFormat",
     "kellojo/m/library",
-], function (XMLComposite, ValueState, Core, NumberFormat, library) {
+    "sap/ui/Device"
+], function (XMLComposite, ValueState, Core, NumberFormat, library, Device) {
     var TransactionEditor = XMLComposite.extend("kellojo.m.TransactionEditor", {
         metadata: {
             properties: {
@@ -16,6 +17,14 @@ sap.ui.define([
                 title: {
                     type: "string",
                     defaultValue: ""
+                },
+                showTitleSuggestion: {
+                    type: "boolean",
+                    defaultValue: !Device.system.phone,
+                },
+                titleSuggestions: {
+                    type: "string[]",
+                    defaultValue: null,
                 },
                 category: {
                     type: "string",
