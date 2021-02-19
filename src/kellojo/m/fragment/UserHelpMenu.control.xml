@@ -4,7 +4,7 @@
         title="{$this>/title}"
         titleAlignment="Center"
         showCloseButton="false"
-        contentWidth="250px"
+        contentWidth="300px"
         contentHeight="100px"
         class="kellojoMUserHelpMenu-popover">
 
