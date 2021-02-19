@@ -102,6 +102,11 @@ sap.ui.define([
         XMLComposite.prototype.init.apply(this, arguments);
         this.addStyleClass("kellojoMTransactionEditor");
 
+        if (!!this._oManagedObjectModel && typeof this._oManagedObjectModel.setSizeLimit === "function") {
+            this._oManagedObjectModel.setSizeLimit(10000);
+            this._oManagedObjectModel.refresh(true);
+        }
+
         this.m_oNumberFormat = NumberFormat.getCurrencyInstance({
             showMeasure: false
         });
