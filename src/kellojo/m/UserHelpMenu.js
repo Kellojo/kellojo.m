@@ -21,6 +21,7 @@ sap.ui.define([
                 getDesktopAppLabel: { type: "string", defaultValue: Core.getLibraryResourceBundle("kellojo.m").getText("UserHelpMenuGetDesktopApp") },
                 websiteLabel: { type: "string", defaultValue: Core.getLibraryResourceBundle("kellojo.m").getText("UserHelpMenuWebsite") },
                 settingsLabel: { type: "string", defaultValue: Core.getLibraryResourceBundle("kellojo.m").getText("UserHelpMenuSettings") },
+                changeLogLabel: { type: "string", defaultValue: Core.getLibraryResourceBundle("kellojo.m").getText("UserHelpMenuChangeLogLabel") },
                 signOutLabel: { type: "string", defaultValue: Core.getLibraryResourceBundle("kellojo.m").getText("UserHelpMenuSignOut") },
                 openSourceLabel: { type: "string", defaultValue: Core.getLibraryResourceBundle("kellojo.m").getText("UserHelpMenuOpenSource") },
                 openSourceLicenses: { type: "object", defaultValue: null },
@@ -76,6 +77,7 @@ sap.ui.define([
                 getMobileAppPress: {},
                 websitePress: {},
                 signOutPress: {},
+                changelogPress: {},
 
                 themeChange: {
                     parameters: {
