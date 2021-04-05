@@ -61,6 +61,10 @@ sap.ui.define([
         Dark: "sap_fiori_3_dark",
     };
 
+    kellojo.m.Color = {
+        BudgetP: "BudgetP",
+    }
+
 
     /**
      * Get's the kellojo.m.Theme for a given theme string (fallback kellojo.m.Theme.Auto)

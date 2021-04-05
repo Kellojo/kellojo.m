@@ -1,0 +1,28 @@
+.kellojoMTag {
+    padding: 0 @tinyPadding;
+    border: 1px solid @sapUiListBorderColor;
+    color: @sapUiContentLabelColor;
+    border-radius: @roundBorderRadius;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sapMLIBActive .kellojoMTag {
+    color: @sapUiListActiveTextColor;
+    -webkit-text-fill-color: @sapUiListActiveTextColor;
+    border-color: @sapUiListActiveTextColor;
+}
+
+.kellojoMTag-flg-left {
+    margin-left: @tinyPadding;
+}
+
+.kellojoMTag-color-BudgetP {
+    background-image: linear-gradient(to left, @budgetBookApp-BrandColor, @budgetBookApp-BrandColorSecondary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    border-color: @budgetBookApp-BrandColor;
+}
