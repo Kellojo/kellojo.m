@@ -1,0 +1,43 @@
+
+.kellojoMSubscriptionTile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: @defaultPadding;
+    border-radius: 2 * @roundBorderRadius;
+    background-color: @sapUiGroupContentBackground;  
+    box-shadow: @defaultBoxShadow; 
+}
+
+.kellojoMSubscriptionTile-price {
+    margin-top: @halfPadding;
+}
+
+.kellojoMSubscriptionTile-content {
+    margin: @defaultPadding 0;
+
+    > :not(:last-child) {
+        margin-bottom: @defaultPadding;
+    }
+}
+
+.kellojoMSubscriptionTile-submitButton {
+    margin-top: auto;
+}
+
+
+
+
+
+// --------------------
+// Colors
+// --------------------
+
+.kellojoMSubscriptionTile-color-BudgetP {
+    background: linear-gradient(to top right, @budgetBookApp-BrandColor, @budgetBookApp-BrandColorSecondary);
+    box-shadow: @highlightBoxShadow;
+
+    .sapMLabel, .kellojoMSubscriptionTile-price, .kellojoMSubscriptionTile-name {
+        color: @sapUiContentContrastTextColor;
+    }
+}

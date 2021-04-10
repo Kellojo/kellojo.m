@@ -63,6 +63,7 @@ sap.ui.define([
 
     kellojo.m.Color = {
         BudgetP: "BudgetP",
+        Default: "Default"
     }
 
 
