@@ -5,36 +5,43 @@
 
     <NavContainer id="idNavContainer" class="kellojoMSubscriptionPurchase-navContainer">
 
-        <Page id="idSubscriptionPage" showHeader="false" busy="{$this>/isPurchasing}">
-            <kM:Wrapper class="kellojoMSubscriptionPurchase-Page">
-                <Label text="{$this>chooseSubscriptionTitle}" class="kellojoMSubscriptionPurchase-title"/>
-                <Label text="{ parts: ['$this>/chooseSubscriptionDetailsText', '$this>/appName'], formatter: 'formatMessage'}" class="kellojoMSubscriptionPurchase-details"/>
+        <Page id="idSubscriptionPage" showHeader="false" busy="{$this>/isPurchasing}" class="kellojoMSubscriptionPurchase-Page">
+            <Text text="{$this>chooseSubscriptionTitle}" class="kellojoMSubscriptionPurchase-title"/>
+            <Text text="{ parts: ['$this>/chooseSubscriptionDetailsText', '$this>/appName'], formatter: 'formatMessage'}" class="kellojoMSubscriptionPurchase-details"/>
 
-                <kM:SubscriptionContainer content="{$this>/subscriptions}">
-                    <kM:SubscriptionTile name="{$this>name}" 
-                        color="{$this>color}"
-                        price="{$this>formattedPrice}"
-                        content="{$this>benefits}">
-                        <kM:content>
-                            <kM:Label src="{$this>icon}" text="{$this>text}" iconValueState="{$this>valueState}"/>
-                        </kM:content>
+            <kM:SubscriptionContainer content="{$this>/subscriptions}">
+                <kM:SubscriptionTile name="{$this>name}" 
+                    color="{$this>color}"
+                    price="{$this>formattedPrice}"
+                    content="{$this>benefits}">
+                    <kM:content>
+                        <kM:Label src="{$this>icon}" text="{$this>text}" iconValueState="{$this>valueState}"/>
+                    </kM:content>
 
-                        <kM:submitButton>
-                            <Button type="Emphasized" text="{$this>/subscribeText}" enabled="{= !${$this>owned} &amp;&amp; !${$this>/isPurchasing} }" press="onSubscribeButtonPress">
-                                <customData>
-                                    <core:CustomData key="subscription" value="{$this>}"/>
-                                </customData>
-                            </Button>
-                        </kM:submitButton>
-                    </kM:SubscriptionTile>
-                </kM:SubscriptionContainer>
-                
-                <Link text="{$this>/skipText}" class="kellojoMSubscriptionPurchase-remindMeLink" press="fireSkipSubscription"/>
-            </kM:Wrapper>   
+                    <kM:submitButton>
+                        <Button type="Emphasized" text="{$this>/subscribeText}" enabled="{= !${$this>owned} &amp;&amp; !${$this>/isPurchasing} }" press="onSubscribeButtonPress">
+                            <customData>
+                                <core:CustomData key="subscription" value="{$this>}"/>
+                            </customData>
+                        </Button>
+                    </kM:submitButton>
+                </kM:SubscriptionTile>
+            </kM:SubscriptionContainer>
+            
+            <Link text="{$this>/skipText}" class="kellojoMSubscriptionPurchase-remindMeLink" press="fireSkipSubscription"/>
         </Page>
 
-        <Page id="idSubscriptionPurchasedPage">
-        
+        <Page id="idSubscriptionPurchasedPage" showHeader="false" class="kellojoMSubscriptionPurchase-Page">
+            <kM:Confetti id="idConfetti"/>
+
+            <Text text="{$this>/successTitle}" class="kellojoMSubscriptionPurchase-title"/>
+            <Text text="{ parts: ['$this>/successDetails', '$this>/purchasedSubscription/name', '$this>/appName'], formatter: 'formatMessage'}" class="kellojoMSubscriptionPurchase-details"/>
+
+            <kM:AnimatedEnumeration id="idAnimatedEnumeration" content="{$this>/purchasedSubscription/benefits}">
+                <kM:Label useText="true" src="{$this>icon}" text="{$this>text}" iconValueState="{$this>valueState}"/>     
+            </kM:AnimatedEnumeration>
+
+            <Button text="{$this>/continueText}" press="fireContinue" class="kellojoMSubscriptionPurchase-continueButton"/>
         </Page>
     </NavContainer>
 

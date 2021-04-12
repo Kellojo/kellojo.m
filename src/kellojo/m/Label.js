@@ -1,14 +1,16 @@
 sap.ui.define([
     "sap/ui/core/Control",
     "sap/m/Label",
+    "sap/m/Text",
     "sap/ui/core/Icon",
     "sap/ui/core/ValueState",
-], function (Control, Label, Icon, ValueState) {
+], function (Control, Label, Text, Icon, ValueState) {
         return Control.extend("kellojo.m.Divider", {
             metadata: {
                 properties: {
                     text: { type: "string" },
                     src: {type: "string" },
+                    useText: {type: "boolean" },
                     iconValueState: { type: "sap.ui.core.ValueState", defaultValue: ValueState.None },
                 }
             },
@@ -27,9 +29,16 @@ sap.ui.define([
                     }).addStyleClass("kellojoMLabel-flg-" + oControl.getIconValueState()));
                 }
 
-                oRm.renderControl(new Label({
-                    text: oControl.getText(),
-                }));
+                if (oControl.getUseText()) {
+                    oRm.renderControl(new Text({
+                        text: oControl.getText(),
+                    }));
+                } else {
+                    oRm.renderControl(new Label({
+                        text: oControl.getText(),
+                    }));
+                }
+
 
                 oRm.write("</div>");
             }

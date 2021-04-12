@@ -12,13 +12,18 @@ sap.ui.define([
                     subscribeText: { type: "string", defaultValue: Core.getLibraryResourceBundle("kellojo.m").getText("subscribe") },
                     chooseSubscriptionTitle: { type: "string", defaultValue: Core.getLibraryResourceBundle("kellojo.m").getText("chooseSubscriptionTitle") },
                     chooseSubscriptionDetailsText: { type: "string", defaultValue: Core.getLibraryResourceBundle("kellojo.m").getText("chooseSubscriptionDetails") },
+                    successTitle: {type: "string", defaultValue: Core.getLibraryResourceBundle("kellojo.m").getText("subscriptionPurchasedTitle") },
+                    successDetails: {type: "string", defaultValue: Core.getLibraryResourceBundle("kellojo.m").getText("subscriptionPurchasedDetails") },
+                    continueText: {type: "string", defaultValue: Core.getLibraryResourceBundle("kellojo.m").getText("subscriptionPurchasedContinue") },
 
                     subscriptions: { type: "object[]" },
+                    purchasedSubscription: {type: "object" },
                 },
 
                 events: {
                     skipSubscription: { },
                     subscribe: { },
+                    continue: {},
                 },
 
             },
@@ -30,10 +35,11 @@ sap.ui.define([
                 this.m_oNavContainer = this.byId("idNavContainer");
             },
 
-            onSubscribeButtonPress: function() {
+            onSubscribeButtonPress: function(oEvent) {
                 this.setIsPurchasing(true);
                 this.fireSubscribe({});
-
+                this.setPurchasedSubscription(oEvent.getSource().data("subscription"));
+                this.byId("idAnimatedEnumeration").setHidden(true);
             },
 
             subscriptionFailed: function() {
@@ -42,7 +48,12 @@ sap.ui.define([
             subscriptionPurchased: function() {
                 this.setIsPurchasing(false);
                 this.m_oNavContainer.to(this.byId("idSubscriptionPurchasedPage"));
-                // show confetti
+                this.byId("idConfetti").setActive(true);
+                this.byId("idAnimatedEnumeration").setHidden(false);
+            },
+
+            reset: function() {
+                this.m_oNavContainer.backToTop();
             }
 
         });

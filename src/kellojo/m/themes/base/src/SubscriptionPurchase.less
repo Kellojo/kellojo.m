@@ -1,5 +1,5 @@
 
-.kellojoMSubscriptionPurchase-Page {
+.kellojoMSubscriptionPurchase-Page > section {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -10,7 +10,7 @@
     padding: 2 * @defaultPadding;
     box-sizing: border-box;
 
-    .sapMLabel {
+    .sapMLabel, .sapMText {
         white-space: normal !important;
         text-align: center !important;
     }
@@ -36,5 +36,9 @@
 
 .kellojoMSubscriptionPurchase-remindMeLink {
     color: @sapUiContentLabelColor !important;
+    margin-top: 3 * @defaultPadding;
+}
+
+.kellojoMSubscriptionPurchase-continueButton {
     margin-top: 3 * @defaultPadding;
 }

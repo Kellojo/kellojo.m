@@ -6,27 +6,25 @@ sap.ui.define([
             metadata: {
                 properties: {
                     active: { type: "boolean", defaultValue: false },
-                    duration: { type: "number", defaultValue: 2000 },
+                    duration: { type: "int", defaultValue: 10000 },
                 }
             },
 
             init: function() {
                 Control.prototype.init.apply(this, arguments);
-
-                this.fnConfetti = confetti.create(myCanvas, { resize: true });
+                
             },
 
-            setActive: function(bActive) {
-                clearTimeout(this.this.m_oConfettiTimeout);
-                if (bActive) {
-                    fnConfetti();
-                    
-                    this.m_oConfettiTimeout = setTimeout(() => {
-                        this.setActive(false);
-                    }, this.getDuration());
-                } else {
-                    fnConfetti.reset();
-                }
+            onAfterRendering: function() {
+                const oParentElement = this.getDomRef().parentElement;
+                const oCanvas = document.getElementById(this.getId() + "-confetti");
+                oCanvas.width = oParentElement.offsetWidth;
+                oCanvas.height = oParentElement.offsetHeight;
+
+                this.fnConfetti = confetti.create(
+                    oCanvas,
+                    { resize: true }
+                );
             },
 
             renderer: function (oRm, oControl) {
@@ -35,11 +33,27 @@ sap.ui.define([
                 oRm.writeControlData(oControl);
                 oRm.addClass("kellojoMConfetti");
                 oRm.writeClasses(oControl);
+                oRm.write(">");
 
-                oRm.write("<canvas class='kellojoMConfetti-Canvas' id='" + oControl.getId() + "-confetti'/>");
+                oRm.write("<canvas class='kellojoMConfetti-Canvas' id='" + oControl.getId() + "-confetti'></canvas>");
 
-                oRm.write("></div>");
-            }
+                oRm.write("</div>");
+            },
+
+            setActive: function(bActive) {
+                clearTimeout(this.m_oConfettiTimeout);
+                if (bActive) {
+                    this.fnConfetti();
+                    
+                    this.m_oConfettiTimeout = setTimeout(() => {
+                        this.setActive(false);
+                    }, this.getDuration());
+                } else {
+                    this.fnConfetti.reset();
+                }
+            },
+
+
         });
     }
 );
