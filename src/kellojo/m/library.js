@@ -64,7 +64,11 @@ sap.ui.define([
     kellojo.m.Color = {
         BudgetP: "BudgetP",
         Default: "Default"
-    }
+    };
+
+    kellojo.m.Plan = {
+        Free: "Free"
+    };
 
 
     /**
