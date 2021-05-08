@@ -1,0 +1,35 @@
+.kellojoMAvatar-flg-animate {
+    background: linear-gradient(45deg, @accentColor1 0%, @accentColor2 100%);
+    animation: kellojoMAvatar-morph 10s ease-in-out infinite;
+    border-radius: 60% 40% 30% 70%;
+    transition: all 1s ease-in-out;
+    z-index: 5;
+}
+
+.kellojoMAvatar-flg-color-1 {
+    background: linear-gradient(45deg,  0%, @accentColor3 @accentColor2 100%);
+}
+
+.kellojoMAvatar-flg-color-2 {
+    background: linear-gradient(45deg, @accentColor1 0%, @accentColor2 100%);
+}
+
+.kellojoMAvatar-flg-color-3 {
+    background: linear-gradient(45deg, @accentColor1 0%, @accentColor2 100%);
+}
+
+@keyframes kellojoMAvatar-morph {
+    0% {
+        border-radius: 55% 75% 60% 70%;
+    }
+
+    50% {
+        border-radius: 70% 66% 80% 55%;
+
+    }
+
+    100% {
+        border-radius: 60% 80% 55% 70%;
+
+    }
+}
