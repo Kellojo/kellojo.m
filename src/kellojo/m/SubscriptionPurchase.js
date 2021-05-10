@@ -22,7 +22,13 @@ sap.ui.define([
 
                 events: {
                     skipSubscription: { },
-                    subscribe: { },
+                    subscribe: {
+                        parameters: {
+                            subscription: {
+                                type: "object",
+                            },
+                        },
+                    },
                     continue: {},
                 },
 
@@ -36,9 +42,12 @@ sap.ui.define([
             },
 
             onSubscribeButtonPress: function(oEvent) {
+                const oSubscription = oEvent.getSource().data("subscription");
                 this.setIsPurchasing(true);
-                this.fireSubscribe({});
-                this.setPurchasedSubscription(oEvent.getSource().data("subscription"));
+                this.fireSubscribe({
+                    subscription: oSubscription,
+                });
+                this.setPurchasedSubscription(oSubscription);
                 this.byId("idAnimatedEnumeration").setHidden(true);
             },
 

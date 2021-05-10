@@ -40,10 +40,11 @@ sap.ui.define([
     }
 
     AppTitleProto.formatVersionTooltip = function(sVersion, sSubscription, oDate) {
-        const oDateFormat = DateFormat.getInstance();
+        const oDateFormat = DateFormat.getDateTimeInstance();
         const oResourceBundle = Core.getLibraryResourceBundle("kellojo.m");
         const sSubscriptionText = oResourceBundle.getText(`subscription-${sSubscription}`);
-        return oResourceBundle.getText("versionLabelTooltip", [sVersion, sSubscriptionText, oDateFormat.format(oDate)]);
+        const sDate = oDate ?  oDateFormat.format(oDate) : "tbd.";
+        return oResourceBundle.getText("versionLabelTooltip", [sVersion, sSubscriptionText, sDate]);
     }
 
 

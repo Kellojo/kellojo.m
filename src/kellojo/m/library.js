@@ -67,7 +67,8 @@ sap.ui.define([
     };
 
     kellojo.m.Plan = {
-        Free: "Free"
+        Free: "Free",
+        Professional: "Professional",
     };
 
 
