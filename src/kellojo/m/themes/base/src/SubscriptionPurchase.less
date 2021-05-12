@@ -19,7 +19,10 @@
 .kellojoMSubscriptionPurchase-title {
     margin-bottom: @defaultPadding;
     font-size: @titleFontSize  !important;
-    color: @labelDarkGrey !important;
+
+    background-image: linear-gradient(to left, @budgetBookApp-BrandColor, @budgetBookApp-BrandColorSecondary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .kellojoMSubscriptionPurchase-details {
