@@ -13,7 +13,8 @@
                 <kM:SubscriptionTile name="{$this>name}" 
                     color="{$this>color}"
                     price="{$this>formattedPrice}"
-                    content="{$this>benefits}">
+                    content="{$this>benefits}"
+                    animated="{= !${$this>owned} }">
                     <kM:content>
                         <kM:Label src="{$this>icon}" text="{$this>text}" iconValueState="{$this>valueState}"/>
                     </kM:content>

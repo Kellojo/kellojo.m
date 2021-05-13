@@ -1,7 +1,8 @@
 sap.ui.define([
-    "sap/ui/core/Control",
+    "kellojo/m/AnimatedCard",
     "kellojo/m/library",
-], function (Control, library) {
+    "./SubscriptionTileRenderer"
+], function (Control, library, SubscriptionTileRenderer) {
     return Control.extend("kellojo.m.SubscriptionTile", {
         metadata: {
             properties: {
@@ -24,36 +25,11 @@ sap.ui.define([
             }
         },
 
+        renderer: SubscriptionTileRenderer,
 
-
-        renderer: function (oRm, oControl) {
-
-            oRm.write("<div");
-            oRm.writeControlData(oControl);
-            oRm.addClass("kellojoMSubscriptionTile-color-" + oControl.getColor());
-            oRm.addClass("kellojoMSubscriptionTile");
-            oRm.writeClasses(oControl);
-            oRm.write(">");
-
-            oRm.write("<div class='kellojoMSubscriptionTile-name'>");
-            oRm.writeEscaped(oControl.getName());
-            oRm.write("</div>");
-
-            oRm.write("<div class='kellojoMSubscriptionTile-price'>");
-            oRm.writeEscaped(oControl.getPrice());
-            oRm.write("</div>");
-
-
-            oRm.write("<div class='kellojoMSubscriptionTile-content'>");
-            oControl.getContent().forEach(oRm.renderControl);
-            oRm.write("</div>");
-
-
-            oRm.write("<div class='kellojoMSubscriptionTile-submitButton'>");
-            oRm.renderControl(oControl.getSubmitButton());
-            oRm.write("</div>");
-
-            oRm.write("</div>");
+        init: function() {
+            Control.prototype.init.apply(this, arguments);
+            this.addStyleClass("kellojoMSubscriptionTile");
         }
     });
 }
