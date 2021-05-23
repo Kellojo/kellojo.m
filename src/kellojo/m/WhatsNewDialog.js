@@ -50,6 +50,11 @@ sap.ui.define([
                     type: "string",
                     defaultValue: ""
                 },
+            },
+            events: {
+                dismiss: {
+
+                }
             }
         },
 
@@ -68,6 +73,7 @@ sap.ui.define([
 
     WhatsNewDialogProto.close = function () {
         this.byId("idDialog").close();
+        this.fireDismiss();
     }
 
     WhatsNewDialogProto.formatReleaseDate = function (oDate, sAuthor) {
