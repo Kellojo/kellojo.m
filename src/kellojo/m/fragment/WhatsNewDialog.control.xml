@@ -5,6 +5,7 @@
         contentWidth="450px"
         contentHeight="650px"
         maxContentHeight="650px"
+        stretchOnPhone="true"
         class="kellojoMWhatsNewDialog"
         initialFocus="idCloseButton">
 
