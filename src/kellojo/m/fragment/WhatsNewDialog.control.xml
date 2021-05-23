@@ -1,0 +1,31 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:kM="kellojo.m" core:require="{ formatMessage: 'sap/base/strings/formatMessage' }">
+
+    <kM:Dialog id="idDialog"
+        showHeader="false"
+        contentWidth="450px"
+        contentHeight="650px"
+        maxContentHeight="650px"
+        class="kellojoMWhatsNewDialog"
+        initialFocus="idCloseButton">
+
+        <kM:content>
+            <VBox>
+                <Text text="{ parts: ['$this>/title', '$this>/version'], formatter: '.formatTitle'}" class="kellojoMWhatsNewDialog-title"/>
+                <kM:Wrapper  class="kellojoMWhatsNewDialog-titlecontainer">
+                    
+                    <kM:Avatar src="{$this>/authorAvatar}"/>
+                    <Text text="{ parts: ['$this>/releaseDate', '$this>/author'], formatter: '.formatReleaseDate'}"/>
+                </kM:Wrapper>
+            </VBox>
+            
+
+            <kM:MarkDownText text="{$this>/description}"/>
+        </kM:content>
+
+        <kM:endButton>
+            <Button id="idCloseButton" press="close" text="{$this>/closeButtonText}"/>
+        </kM:endButton>
+
+    </kM:Dialog>
+
+</core:FragmentDefinition>

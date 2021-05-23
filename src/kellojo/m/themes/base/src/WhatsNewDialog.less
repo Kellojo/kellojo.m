@@ -1,0 +1,31 @@
+
+
+.kellojoMWhatsNewDialog .sapMDialogScrollCont  {
+    display: flex;
+    flex-direction: column;
+    padding: 2 * @defaultPadding;
+
+    .kellojoMMarkDownText {
+         padding: @defaultPadding 0 0 0;
+    }
+}
+
+.kellojoMWhatsNewDialog-titlecontainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .kellojoMAvatar  {
+        margin-right: @halfPadding;
+        width: @defaultPadding;
+        height: @defaultPadding;
+    }
+}
+
+.kellojoMWhatsNewDialog-title {
+    font-size: @titleFontSize !important;
+    margin-bottom: @halfPadding;
+    font-weight: bold;
+
+    &:extend(.kellojoMBrandText);
+}

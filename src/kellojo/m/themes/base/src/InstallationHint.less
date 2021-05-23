@@ -22,9 +22,7 @@
     font-size: @titleFontSize;
     padding-top: @tinyPadding;
 
-    background-image: linear-gradient(to left, @budgetBookApp-BrandColor, @budgetBookApp-BrandColorSecondary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    &:extend(.kellojoMBrandText);
 
     animation: kellojoMInstallationHint-icon-up-down 1s infinite  alternate;
 }
