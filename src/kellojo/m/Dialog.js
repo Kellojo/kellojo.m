@@ -1,7 +1,8 @@
 sap.ui.define([
     "sap/m/Dialog",
     "sap/m/DialogRenderer",
-], function (Dialog, DialogRenderer) {
+    "sap/ui/Device",
+], function (Dialog, DialogRenderer, Device) {
     var CustomDialog = Dialog.extend("kellojo.m.Dialog", {
         metadata: {
             properties: {
@@ -26,6 +27,7 @@ sap.ui.define([
     }
 
     DialogProto.onAfterRendering = function() {
+        Dialog.prototype.onAfterRendering.apply(this, arguments);
         const oScrollContainer = document.getElementById(`${this.getId()}-scrollCont`);
         let iHeight = oScrollContainer.scrollHeight;
 
@@ -37,7 +39,7 @@ sap.ui.define([
             iHeight = Math.max(0, Math.min(iHeight, Number.parseInt(this.getMaxContentHeight())));
         }
 
-        this.setContentHeight(`${iHeight}px`);
+        this.setContentHeight(`${iHeight}px`);        
     }
 
     /**
