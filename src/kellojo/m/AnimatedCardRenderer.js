@@ -17,11 +17,6 @@ sap.ui.define([],
             oRm.writeClasses(oControl);
             oRm.openEnd();
 
-            oRm.openStart("div", oControl.getId() + "-shine");
-            oRm.class("kellojoMAnimatedCard-shine");
-            oRm.openEnd();
-            oRm.close("div");
-
             this.renderContent(oRm, oControl);
 
             oRm.close("div");
