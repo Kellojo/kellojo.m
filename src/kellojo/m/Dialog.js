@@ -2,7 +2,8 @@ sap.ui.define([
     "sap/m/Dialog",
     "sap/m/DialogRenderer",
     "sap/ui/Device",
-], function (Dialog, DialogRenderer, Device) {
+    "sap/m/InstanceManager"
+], function (Dialog, DialogRenderer, Device, InstanceManager) {
     var CustomDialog = Dialog.extend("kellojo.m.Dialog", {
         metadata: {
             properties: {
@@ -52,9 +53,12 @@ sap.ui.define([
     DialogProto._openAnimation = function ($Ref, iRealDuration, fnOpened) {
         Dialog.prototype._openAnimation.apply(this, arguments);
         try {
-            const oBlockLayer = jQuery("#sap-ui-blocklayer-popup")
-            oBlockLayer.hide();
-            oBlockLayer.fadeIn();
+            const oBlockLayer = jQuery("#sap-ui-blocklayer-popup");
+
+            if (InstanceManager.getOpenDialogs().length == 0) {
+                oBlockLayer.hide();
+                oBlockLayer.fadeIn();
+            }
         } catch (error) {
             
         }
@@ -71,7 +75,10 @@ sap.ui.define([
      */
     DialogProto._closeAnimation = function ($Ref, iRealDuration, fnClose) {
         try {
-            jQuery("#sap-ui-blocklayer-popup").fadeOut();
+            if (InstanceManager.getOpenDialogs().length <= 1) {
+                jQuery("#sap-ui-blocklayer-popup").fadeOut();
+            }
+
         } catch (error) {
 
         }
